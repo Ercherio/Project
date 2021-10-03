@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using ResourcePlacement.Context;
 using ResourcePlacement.Repository.Data;
 using System;
@@ -50,6 +51,17 @@ namespace ResourcePlacement
 
             services.AddDbContext<MyContext>(options => options.UseLazyLoadingProxies()
                 .UseSqlServer(Configuration.GetConnectionString("NETCoreContext")));
+
+            //Add Swagger
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1",
+                    new OpenApiInfo
+                    {
+                        Title = "My API",
+                        Version = "v1",
+                    });
+            });
 
             //Add JWT
 
