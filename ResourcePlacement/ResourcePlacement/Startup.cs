@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using ResourcePlacement.Context;
+using ResourcePlacement.Repository.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,9 +29,20 @@ namespace ResourcePlacement
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddScoped<AccountRepository>();
+            services.AddScoped<AccountRoleRepository>();
+            services.AddScoped<CompanyRepository>();
+            services.AddScoped<EmployeeRepository>();
+            services.AddScoped<JobEmployeeRepository>();
+            services.AddScoped<JobHistoryRepository>();
+            services.AddScoped<JobRepository>();
+            services.AddScoped<RoleRepository>();
+
+
 
             services.AddDbContext<MyContext>(options => options.UseLazyLoadingProxies()
                 .UseSqlServer(Configuration.GetConnectionString("NETCoreContext")));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
