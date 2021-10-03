@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ResourcePlacement.Base;
+using ResourcePlacement.Model;
+using ResourcePlacement.Repository.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +12,11 @@ namespace ResourcePlacement.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class JobsController : ControllerBase
+    public class JobsController : BaseController<Job, JobRepository, int>
     {
+        public JobsController(JobRepository repository) : base(repository)
+        {
+
+        }
     }
 }
