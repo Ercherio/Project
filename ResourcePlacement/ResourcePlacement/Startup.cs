@@ -9,7 +9,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
 using ResourcePlacement.Context;
 using ResourcePlacement.Repository.Data;
 using System;
@@ -32,61 +31,37 @@ namespace ResourcePlacement
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddControllers();
-            services.AddControllersWithViews()
-               .AddNewtonsoftJson(options =>
-                   options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
-           );
-
+            services.AddControllers();
             services.AddScoped<AccountRepository>();
             services.AddScoped<AccountRoleRepository>();
-            services.AddScoped<CompanyRepository>();
-            services.AddScoped<EmployeeRepository>();
-            services.AddScoped<JobEmployeeRepository>();
-            services.AddScoped<JobHistoryRepository>();
-            services.AddScoped<JobRepository>();
             services.AddScoped<RoleRepository>();
-
-
+            services.AddScoped<EmployeeRepository>();
+            services.AddScoped<DepartmentRepository>();
+            services.AddScoped<JobRepository>();
+            services.AddScoped<CompanyRepository>();
+            services.AddScoped<JobHistoryRepository>();
+            services.AddScoped<JobEmployeeRepository>();
 
             services.AddDbContext<MyContext>(options => options.UseLazyLoadingProxies()
                 .UseSqlServer(Configuration.GetConnectionString("NETCoreContext")));
+            services.AddControllersWithViews()
+                .AddNewtonsoftJson(options =>
+                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
 
-            //Add Swagger
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1",
-                    new OpenApiInfo
-                    {
-                        Title = "My API",
-                        Version = "v1",
-                    });
-            });
-
-            //Add JWT
-
-            services.AddAuthentication(auth =>
-            {
-                auth.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                auth.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            }
-
-
-            ).AddJwtBearer(options =>
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
             {
                 options.RequireHttpsMetadata = false;
                 options.SaveToken = true;
                 options.TokenValidationParameters = new TokenValidationParameters()
                 {
                     ValidateIssuer = true,
-                    ValidateAudience = false,
-                    ValidAudience = Configuration["Jwt:Audience"],
-                    ValidIssuer = Configuration["Jwt:Issuer"],
+                    ValidateAudience = true,
+                    ValidAudience = Configuration["jwt:Audience"],
+                    ValidIssuer = Configuration["jwt:Issuer"],
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
                 };
             });
-
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

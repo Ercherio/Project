@@ -16,7 +16,6 @@ namespace ResourcePlacement.Controllers
     {
         public DepartmentsController(DepartmentRepository repository) : base(repository)
         {
-
         }
     }
 }

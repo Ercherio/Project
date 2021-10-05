@@ -27,96 +27,85 @@ namespace ResourcePlacement.Base
         {
             try
             {
-                //if (repository.Insert(entity) > 0)
-                //{
-                //    return Ok(new { status = HttpStatusCode.OK, message = "Data Berhasil ditambahkan" });
-                //}
-                //else if (repository.Insert(entity) == 0)
-                //{
-                //    return BadRequest(new { status = HttpStatusCode.BadRequest, message = "Gagal Menambahkan Data" });
-                //}
-                //else
-                //{
-                //    return BadRequest(new { status = HttpStatusCode.BadRequest, message = "Data Sudah ada" });
-                //}
                 repository.Insert(entity);
-                return Ok(new
-                {
-                    statusCode = StatusCode(200),
-                    status = HttpStatusCode.OK,
-                    message = "Success"
-                });
-            }
-            catch (Exception)
-            {
-                return BadRequest(new
-                {
-                    status = HttpStatusCode.BadRequest,
-                    message = "Error duplicate data",
-                    error = entity,
-                });
-            }
-            //return BadRequest(new { status = HttpStatusCode.BadRequest, message = "Data Sudah ada" });
-
-        }
-        [HttpGet]
-        public ActionResult Get()
-        {
-            var data = repository.Get();
-            if (data.Count() == 0)
-            {
-
-                return NotFound(new { status = HttpStatusCode.NotFound, message = "Data Kosong" });
-            }
-
-            //return Ok(new { status = HttpStatusCode.OK, data, message = "Data Berhasil ditampilkan" });
-            return Ok(data);
-        }
-        [HttpGet("{key}")]
-        public ActionResult Get(Key key)
-        {
-            var data = repository.Get(key);
-            //Jika data yang dicari tidak ada
-            if (data == null)
-            {
-                return NotFound(new { status = HttpStatusCode.NotFound, message = "Kamu salah input data gaada" });
-            }
-            //return Ok(new { status = HttpStatusCode.OK, data, message = "Data ditemukan" });
-            return Ok(data);
-        }
-        [HttpPut]
-        public ActionResult Update(Entity entity)
-        {
-            var data = repository.Update(entity);
-            try
-            {
-                if (data != 0)
-                {
-                    return Ok(new { status = HttpStatusCode.OK, data, message = "Data Berhasil diupdate" });
-                }
+                return Ok("Sukses Insert Data");
+                //return StatusCode((int)HttpStatusCode.OK, new { status = (int)HttpStatusCode.OK, data = "Sukses Insert Data" });
             }
             catch (Exception e)
             {
-
-                Console.WriteLine("ERROR :" + e.Message);
+                return BadRequest(e.Message);
+                //return StatusCode((int)HttpStatusCode.InternalServerError, new { Status = (int)HttpStatusCode.InternalServerError, Message = e.Message });
             }
-            return BadRequest(new { status = HttpStatusCode.BadRequest, message = "Data tidak ditemukan" });
+
         }
+
+        [HttpGet]
+
+        public ActionResult Get()
+        {
+            var temp = repository.Get();
+            if (temp == null)
+            {
+                return NotFound(temp);
+                //return StatusCode((int)HttpStatusCode.NotFound, new { status = (int)HttpStatusCode.NotFound, data = "No result" });
+            }
+            else
+            {
+                return Ok(temp);
+                //return StatusCode((int)HttpStatusCode.OK, new { status = (int)HttpStatusCode.OK, data = temp });
+            }
+        }
+
+        [HttpGet("{key}")]
+
+        public ActionResult GetKey(Key key)
+        {
+            var temp = repository.Get(key);
+            if (temp == null)
+            {
+                return NotFound(temp);
+                //return StatusCode((int)HttpStatusCode.NotFound, new { status = (int)HttpStatusCode.NotFound, data = "No result" });
+            }
+            else
+            {
+                return Ok(temp);
+                //return StatusCode((int)HttpStatusCode.OK, new { status = (int)HttpStatusCode.OK, data = temp });
+            }
+        }
+
+        [HttpPut]
+
+        public ActionResult update(Entity entity)
+        {
+            try
+            {
+                var temp = repository.Update(entity);
+                return Ok("Sukses Update Data");
+                //return StatusCode((int)HttpStatusCode.OK, new { status = (int)HttpStatusCode.OK, data = "Sukses Update Data" });
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+                //return StatusCode((int)HttpStatusCode.InternalServerError, new { Status = (int)HttpStatusCode.InternalServerError, Message = e.Message });
+            }
+
+        }
+
         [HttpDelete("{key}")]
+
         public ActionResult Delete(Key key)
         {
-            var data = repository.Delete(key);
-            if (data == 0)
+            try
             {
-                return BadRequest(new { status = HttpStatusCode.BadRequest, message = "Data Gagal dihapus" });
+                var temp = repository.Delete(key);
+                return Ok("Sukses Delete Data");
+                //return StatusCode((int)HttpStatusCode.OK, new { status = HttpStatusCode.OK, data = "Sukses Delete Data" });
             }
-            //repository.Delete(key);
-            return Ok(new { status = HttpStatusCode.OK, message = "Data Berhasil dihapus" });
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+                //return StatusCode((int)HttpStatusCode.InternalServerError, new { Status = (int)HttpStatusCode.InternalServerError, Message = e.Message });
+            }
         }
-
-
-
-
     }
 }
-

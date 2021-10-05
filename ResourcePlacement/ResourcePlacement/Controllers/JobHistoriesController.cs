@@ -16,7 +16,6 @@ namespace ResourcePlacement.Controllers
     {
         public JobHistoriesController(JobHistoryRepository repository) : base(repository)
         {
-
         }
     }
 }

@@ -16,7 +16,6 @@ namespace ResourcePlacement.Controllers
     {
         public CompaniesController(CompanyRepository repository) : base(repository)
         {
-
         }
     }
 }

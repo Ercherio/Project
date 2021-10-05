@@ -16,7 +16,6 @@ namespace ResourcePlacement.Controllers
     {
         public RolesController(RoleRepository repository) : base(repository)
         {
-
         }
     }
 }
