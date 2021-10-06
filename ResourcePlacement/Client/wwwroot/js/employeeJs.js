@@ -30,7 +30,19 @@
                 },
                 "autoWidth": true
             },
-            
+            {
+                "data": "gender", render: function (toFormat) {
+                    var gender;
+                    console.log(toFormat)
+                    if (toFormat === 0) {
+                        gender = "Male"
+                    } else {
+                        gender = "Female"
+                    }
+                    return gender;
+                },
+                "orderable": false
+            },
             {
                 "data": "email"
             },
@@ -109,7 +121,8 @@
         obj_register.PhoneNumber = $("#notelp").val();
         obj_register.Email = $("#validationCustom04").val();
         obj_register.Gender = parseInt($('#inputGender').val());
-        obj_register.DepartmentId = parseInt($('#departmentId').val());
+        obj_register.EmploymentStatus = parseInt($('#inputStatus').val());
+        obj_register.DepartmentId = parseInt($('#department').val());
        
         if ($("#validationgaji").val() == "") {
             document.getElementById("validationgaji").className = "form-control is-invalid";
@@ -198,9 +211,19 @@
             }
         })
     })
+    $.ajax({
+        url: '/Departments'
+    }).done(res => {
+        let selectItem = '';
+        console.log(res)
+        $.each(res, (key, val) => {
+            selectItem += `<option value="${val.id}">${val.name}</option>`
+        });
+        $('#department').html(selectItem);
+    }).fail(res => console.log(res));
 })
 
-    
+
 
     
 function moneyMaker(bilangan) {
@@ -235,30 +258,36 @@ function detail(id) {
         var subsTphone = sPhone.substring(0, 2);
         /*console.log(data.nik);*/
         if (subsTphone == "08") {
-            sPhone = '(' + '+62' + ')' + sPhone.substring(1, 4) + '-' + sPhone.substring(5, 9) + '-' + sPhone.substring(10, 14);
+            sPhone = '(' + '+62' + ')' + sPhone.substring(1, 4) + '-' + sPhone.substring(4, 8) + '-' + sPhone.substring(8, 14);
             
         } else {
             sPhone = '(' + '+62' + ')' + sPhone.substring(0, 3) + '-' + sPhone.substring(4, 8) + '-' + sPhone.substring(9, 13);
             
         }
-     
-        title = `<h5>Detail of ${result.firstName} ${result.lastName} </h5>`;
 
-        text = `                  
+        var status = "";
+        if (result.employmentStatus == 1) {
+            status += `<span class="badge badge-success">ACTIVE</span>`
+        } else {
+            status += `<span class="badge badge-danger">INACTIVE</span>`
+        }
+        title = `<h5>Detail of ${result.firstName} ${result.lastName} ${status} </h5>`;
+
+        text = `
                 <ul>
                             <li class="list-group">: ${result.id}</li>
                             <li class="list-group">: ${result.firstName} ${result.lastName}</li>
                             <li class="list-group">: ${Gender}</li>
-               
                             <li class="list-group">: ${result.email}</li>
                             <li class="list-group">: ${sPhone}</li>
-                        
                             <li class="list-group">: ${salary}</li>
+                        
                 </ul>
              `;
         /*console.log(text);*/
         $("#GetEmployee").modal('show');
         $("#GetEmployeelabel").html(title);
+     
         $("#detailemployee").html(text);
         
 

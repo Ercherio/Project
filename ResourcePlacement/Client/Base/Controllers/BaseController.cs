@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Client.Base.Controllers
 {
+    
     public class BaseController<TEntity, TRepository, TKey> : Controller
         where TEntity:class
         where TRepository:IRepository<TEntity, TKey>
@@ -26,7 +27,7 @@ namespace Client.Base.Controllers
             return Json(result);
         }
 
-        [HttpGet]
+        [HttpGet("key")]
         public async Task<JsonResult> Get(TKey key)
         {
             var result = await repository.Get(key);
@@ -47,7 +48,7 @@ namespace Client.Base.Controllers
             return Json(result);
         }
 
-        [HttpDelete]
+        [HttpDelete("key")]
         public JsonResult Delete(TKey key)
         {
             var result = repository.Delete(key);

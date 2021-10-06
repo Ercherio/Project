@@ -44,7 +44,7 @@ namespace Client.Controllers
         }
 
         [AllowAnonymous]
-        [HttpGet("login")]
+        [HttpGet("login-page")]
         public IActionResult Index()
         {
             return View();
