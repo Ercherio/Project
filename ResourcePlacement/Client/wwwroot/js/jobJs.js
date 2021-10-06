@@ -208,7 +208,7 @@ function detail(id) {
 function del(nik) {
     console.log(nik)
     Swal.fire({
-        title: `Are you sure to delete data nik = ${nik}?`,
+        title: `Are you sure that you want to delete this data?`,
         text: "You won't be able to revert this!",
         icon: 'warning',
         showCancelButton: true,
@@ -225,7 +225,7 @@ function del(nik) {
 
             Swal.fire(
                 'Deleted!',
-                'Your file has been deleted.',
+                'Your data has been deleted.',
                 'success'
                 )
                 table.ajax.reload(); // user paging is not reset on reload
