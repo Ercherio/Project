@@ -41,6 +41,8 @@ namespace Client.Controllers
             return Json(result);
         }
 
+
+
         [HttpGet("Main")]
         public IActionResult Index()
         {
