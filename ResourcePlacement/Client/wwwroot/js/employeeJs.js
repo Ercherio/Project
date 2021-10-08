@@ -126,7 +126,7 @@
        
         if ($("#validationgaji").val() == "") {
             document.getElementById("validationgaji").className = "form-control is-invalid";
-            $("#msgSalary").html("Salary tidak boleh kosong");
+            $("#msgSalary").html("Salary can't be empty");
         } else {
             document.getElementById("validationgaji").className = "form-control is-valid";
             obj_register.salary = $("#validationgaji").val();
@@ -171,17 +171,6 @@
             obj_register.PhoneNumber= $("#notelp").val();
         }
 
-        if ($("#departmendId").val() == "") {
-            document.getElementById("departmendId").className = "form-control is-invalid";
-            $("#msgDapertment").html("ID Department can't be empty");
-        } else {
-            document.getElementById("notelp").className = "form-control is-valid";
-            obj_register.DepartmentId = $("#departmendId").val();
-        }
-
-
-        console.log(JSON.stringify(obj_register));
-
         $.ajax({
             url: "/Employees/Add",
             method: 'POST',
@@ -189,15 +178,13 @@
             contentType: 'application/x-www-form-urlencoded',
             data: obj_register,
             success: function (data) {
-                $('#register').modal('hide')
+                $('#Register').modal('hide');
                 Swal.fire({
                     title: 'Success Inserting Data!',
                     text: 'Press Any Button to Continue',
                     icon: 'success',
                     confirmButtonText: 'Okay'
                 })
-
-                $('#Register').modal('hide');
                 table.ajax.reload();
             },
             error: function (xhr, status, error) {
@@ -209,8 +196,9 @@
                 }
 
             }
-        })
+        })    
     })
+
     $.ajax({
         url: '/Departments'
     }).done(res => {

@@ -2,23 +2,29 @@
 using Client.Repository.Data;
 using Microsoft.AspNetCore.Mvc;
 using ResourcePlacement.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Client.Controllers
 {
     [Route("[controller]")]
-    public class AssignsController : BaseController<JobEmployee, JobEmployeeRepository, string>
+    public class JobEmployeesController : BaseController<JobEmployee, JobEmployeeRepository, string>
     {
         private readonly JobEmployeeRepository repository;
-        public AssignsController(JobEmployeeRepository repository) : base(repository)
+        public JobEmployeesController(JobEmployeeRepository repository) : base(repository)
         {
             this.repository = repository;
         }
 
-        [HttpGet("assign-form")]
+
+        [HttpGet("GetJobEmployee")]
+        public async Task<JsonResult> GetJobEmployee()
+        {
+            var result = await repository.GetJobEmployee();
+            return Json(result);
+        }
+
+
+        [HttpGet("Main")]
         public IActionResult Index()
         {
             return View();

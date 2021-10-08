@@ -39,6 +39,7 @@ namespace Client.Controllers
             }
 
             HttpContext.Session.SetString("JWToken", token);
+            HttpContext.Session.SetString("Email", email);
 
             return RedirectToAction("index", "home");
         }

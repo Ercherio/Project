@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -7,12 +7,14 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Resource Placement</title>
-    
-    <link href="/css/styles.css" rel="stylesheet" />
-    
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.1/css/jquery.dataTables.css">
-</head>
+    @using Microsoft.AspNetCore.Http
+    @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+    @{ ViewBag.email = HttpContextAccessor.HttpContext.Session.GetString("Email"); }
+<link href="/css/styles.css" rel="stylesheet" />
+
+            <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css">
+                        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.1/css/jquery.dataTables.css">
+                                </head>
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
@@ -21,10 +23,7 @@
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
         <!-- Navbar Search-->
         <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-            <div class="input-group">
-                <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
-            </div>
+            <a class="navbar-brand ps-3">Current User : @ViewBag.email&nbsp;&nbsp;</a>
         </form>
         <!-- Navbar-->
         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
@@ -80,6 +79,18 @@
                         <div class="collapse" id="pagesCollapseJob" aria-labelledby="heading" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" asp-controller="Jobs" asp-action="Main">Jobs List</a>
+                                @*<a class="nav-link" href="#">HR List</a>*@
+                            </nav>
+                        </div>
+
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseJob" aria-expanded="false" aria-controls="collapseLayouts">
+                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                            Assigment
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="pagesCollapseJob" aria-labelledby="heading" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" asp-controller="JobEmployees" asp-action="Main">Invitation</a>
                                 @*<a class="nav-link" href="#">HR List</a>*@
                             </nav>
                         </div>

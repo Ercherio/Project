@@ -91,7 +91,7 @@
 
         if ($("#title").val() == "") {
             document.getElementById("title").className = "form-control is-invalid";
-            $("#msgT").html("Title can't be empty");
+            $("#msgT").html("Job Title can't be empty");
         } else {
             document.getElementById("title").className = "form-control is-valid";
             obj_register.Title = $("#title").val();
@@ -99,7 +99,7 @@
         }
         if ($("#description").val() == "") {
             document.getElementById("description").className = "form-control is-invalid";
-            $("#msgDescription").html("Title can't be empty");
+            $("#msgDescription").html("Job's description can't be empty");
         } else {
             document.getElementById("description").className = "form-control is-valid";
             obj_register.Description = $("#description").val();

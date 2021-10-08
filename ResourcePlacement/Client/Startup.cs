@@ -12,8 +12,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+
 
 namespace Client
 {
@@ -36,13 +38,14 @@ namespace Client
             });
 
             services.AddControllersWithViews();
-           
+            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<LoginRepository>();
             services.AddScoped<EmployeeRepository>();
             services.AddScoped<DepartmentRepository>();
             services.AddScoped<AccountRepository>();
             services.AddScoped<JobRepository>();
             services.AddScoped<CompanyRepository>();
+            services.AddScoped<JobEmployeeRepository>();
             services.AddScoped<Address>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>

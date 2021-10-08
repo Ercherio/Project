@@ -51,7 +51,6 @@
                     var tPhone;
                     tPhone = toFormat.toString();
                     subsTphone = tPhone.substring(0, 2);
-                    /*console.log(data.nik);*/
                     if (subsTphone == "08") {
                         tPhone = '(' + '+62' + ')' + tPhone.substring(1, 4) + '-' + tPhone.substring(4, 8) + '-' + tPhone.substring(8, 14);
                         return tPhone
@@ -66,7 +65,7 @@
                 "data": null,
                 "orderable": false,
                 "render": function (data, type, row) {
-                    var button = `<button class="btn btn-success" id="select" 
+                    var button = `<button class="btn btn-success" id="select"
                                     data-id= ${row["id"]} data-email= ${row["email"]}
                                     data-gender= ${row["gender"]}
                                     data-status= ${row["employmentStatus"]}
@@ -106,6 +105,8 @@
         $('#validationgaji').val(salary);
        
         $('#selectEmployee').modal('hide');
+
+
     })
 
 
@@ -150,7 +151,7 @@
                 "data": null,
                 "orderable": false,
                 "render": function (data, type, row) {
-                    var button = `<a class="btn btn-success" id="selectJob" 
+                    var button = `<a class="btn btn-success" id="selectJob"
                                     data-id= "${row["id"]}" data-title= "${row["title"]}"
                                     data-company= ${row["companyId"]}
                                     data-description= "${row["description"]}">Select</a>`;
@@ -180,6 +181,41 @@
         
 
         $('#SelectJob').modal('hide');
+    })
+
+    $("#assignment").click(function (event) {
+        event.preventDefault();
+        var d = new Date();
+        var today = `${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`;
+        var obj_assign = new Object();
+        obj_assign.EmployeeId = $("#validationCustom03").val();
+        obj_assign.JobId = $("#JobID").val();
+        obj_assign.Status = parseInt('1');
+        obj_assign.RecordDate = today;
+        console.log(today);
+        console.log(JSON.stringify(obj_assign));
+
+        $.ajax({
+            url: "/Assigns",
+            method: 'POST',
+            dataType: 'json',
+            contentType: 'application/x-www-form-urlencoded',
+            data: obj_assign,
+            success: function (data) {
+                
+                Swal.fire({
+                    title: 'Success Inserting Data!',
+                    text: 'Press Any Button to Continue',
+                    icon: 'success',
+                    confirmButtonText: 'Okay'
+                })
+               
+            },
+            error: function (xhr, status, error) {
+                console.log(xhr.responseJSON.errors);
+
+            }
+        })
     })
 })
 
