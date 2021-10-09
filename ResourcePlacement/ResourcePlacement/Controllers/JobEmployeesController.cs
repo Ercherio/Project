@@ -28,13 +28,31 @@ namespace ResourcePlacement.Controllers
             if (jobEmployees == null)
             {
                 return NotFound(jobEmployees);
-                //return StatusCode((int)HttpStatusCode.NotFound, new { status = (int)HttpStatusCode.NotFound, data = "No result" });
             }
             else
             {
                 return Ok(jobEmployees);
-                //return StatusCode((int)HttpStatusCode.OK, new { status = (int)HttpStatusCode.OK, data = person });
             }
+        }
+
+        [HttpPost("InsertAssignmentInvitation")]
+        public ActionResult InsertAssignmentInvitation(JobEmployee jobEmployee)
+        {
+            try
+            {
+                Insert(jobEmployee);
+                var email = jobEmployeeRepository.GetEmail(jobEmployee.EmployeeId);
+                var name = jobEmployeeRepository.GetName(jobEmployee.EmployeeId);
+                var jobName = jobEmployeeRepository.GetJobName(jobEmployee.JobId);
+                var company = jobEmployeeRepository.GetCompany(jobEmployee.JobId);
+                var sendinvit = jobEmployeeRepository.Email(email, name, jobEmployee.InterviewDate, jobEmployee.InterviewTime, jobEmployee.Interviewer, jobName, company);
+                return Ok("Sukses Insert Data");
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+
         }
     }
 }

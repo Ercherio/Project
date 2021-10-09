@@ -13,8 +13,8 @@ namespace ResourcePlacement.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -27,7 +27,7 @@ namespace ResourcePlacement.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -40,7 +40,7 @@ namespace ResourcePlacement.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -53,8 +53,8 @@ namespace ResourcePlacement.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CompanyId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -73,11 +73,11 @@ namespace ResourcePlacement.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Gender = table.Column<int>(type: "int", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Salary = table.Column<int>(type: "int", nullable: false),
                     EmploymentStatus = table.Column<int>(type: "int", nullable: false),
                     DepartmentId = table.Column<int>(type: "int", nullable: false)
@@ -98,7 +98,7 @@ namespace ResourcePlacement.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -145,6 +145,8 @@ namespace ResourcePlacement.Migrations
                     JobId = table.Column<int>(type: "int", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
                     RecordDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    InterviewDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    InterviewTime = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Interviewer = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     InterviewResult = table.Column<int>(type: "int", nullable: false)
                 },

@@ -41,5 +41,12 @@ namespace Client.Repository.Data
             return entities;
         }
 
+        public string Register(JobEmployee jobEmployee)
+        {
+            StringContent content = new StringContent(JsonConvert.SerializeObject(jobEmployee), Encoding.UTF8, "application/json");
+            var result = httpClient.PostAsync(request + "InsertAssignmentInvitation", content).Result.Content.ReadAsStringAsync().Result;
+            return result;
+        }
+
     }
 }

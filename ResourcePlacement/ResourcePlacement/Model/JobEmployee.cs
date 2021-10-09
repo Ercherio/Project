@@ -11,13 +11,15 @@ namespace ResourcePlacement.Model
     [Table("tb_tr_jobs_employees")]
     public class JobEmployee
     {
-        [Key]
+        [Required]
         public string EmployeeId { get; set; }
         public int JobId { get; set; }
         [Required]
         public int Status { get; set; }
-        [Required]
+        [Key]
         public DateTime RecordDate { get; set; }
+        public DateTime InterviewDate { get; set; }
+        public string InterviewTime { get; set; }
         public string Interviewer { get; set; }
         public int InterviewResult { get; set; }
 

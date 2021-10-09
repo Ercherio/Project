@@ -10,22 +10,22 @@ using System.Threading.Tasks;
 namespace Client.Controllers
 {
     [Route("[controller]")]
-    public class AssignsController : BaseController<JobEmployee, JobEmployeeRepository, string>
+    public class InterviewsController : BaseController<JobEmployee, JobEmployeeRepository, string>
     {
         private readonly JobEmployeeRepository repository;
-        public AssignsController(JobEmployeeRepository repository) : base(repository)
+        public InterviewsController(JobEmployeeRepository repository) : base(repository)
         {
             this.repository = repository;
         }
 
-        [HttpPost("assign")]
+        [HttpPost("interview")]
         public JsonResult Register(JobEmployee jobEmployee)
         {
             var result = repository.Register(jobEmployee);
             return Json(result);
         }
 
-        [HttpGet("assign-form")]
+        [HttpGet("interview-form")]
         public IActionResult Index()
         {
             return View();

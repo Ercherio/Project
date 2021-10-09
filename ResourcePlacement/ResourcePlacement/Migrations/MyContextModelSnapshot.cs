@@ -25,6 +25,7 @@ namespace ResourcePlacement.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Password")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -55,9 +56,11 @@ namespace ResourcePlacement.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Address")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -73,6 +76,7 @@ namespace ResourcePlacement.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -89,21 +93,25 @@ namespace ResourcePlacement.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("EmploymentStatus")
                         .HasColumnType("int");
 
                     b.Property<string>("FirstName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Gender")
                         .HasColumnType("int");
 
                     b.Property<string>("LastName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Salary")
@@ -127,9 +135,11 @@ namespace ResourcePlacement.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -147,8 +157,14 @@ namespace ResourcePlacement.Migrations
                     b.Property<int>("JobId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("InterviewDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("InterviewResult")
                         .HasColumnType("int");
+
+                    b.Property<string>("InterviewTime")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Interviewer")
                         .HasColumnType("nvarchar(max)");
@@ -195,6 +211,7 @@ namespace ResourcePlacement.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
