@@ -3,8 +3,11 @@ $("#btnChange").click(function (event) {
     event.preventDefault();
     var obj_change = new Object();
     var validate = false;
-    console.log($("#inputOldPass").val());
-
+ /*   console.log($("#inputOldPass").val());*/
+    obj_change.Email = $("#inputEmail").val();
+    obj_change.OldPassword = $("#inputOldPass").val();
+    obj_change.NewPassword = $("#inputNewPass").val();
+    obj_change.NewPasswordConfirm = $("#inputConfirmPass").val();
 
     if ($("#inputEmail").val() == "") {
         document.getElementById("inputEmail").className = "form-control is-invalid";
@@ -15,14 +18,14 @@ $("#btnChange").click(function (event) {
         document.getElementById("inputEmail").className = "form-control is-valid";
         obj_change.Email = $("#inputEmail").val();
     }
-    if ($("#inputOldPass").val() == ""&& validate==false) {
+    if ($("#inputOldPass").val() == "" && validate==false) {
         document.getElementById("inputOldPass").className = "form-control is-invalid";
         $("#msgOld").html("Old Password can't be empty");
         validate = false;
     } else {
         document.getElementById("inputOldPass").className = "form-control is-valid";
-        obj_change.OldPasword = $("#inputOldPass").val();
-        $("#inputOldPass").val(obj_change.OldPasword);
+        obj_change.OldPassword = $("#inputOldPass").val();
+        
         validate = true;
     }
 
@@ -49,7 +52,7 @@ $("#btnChange").click(function (event) {
     }
 
     if ((($("#inputNewPass").val()) != ($("#inputConfirmPass").val()))) {
-        document.getElementById("inputOldPass").className = "form-control is-invalid";
+        document.getElementById("inputConfirmPass").className = "form-control is-invalid";
         $("#msgConfirm").html("New Password and Confirm aren't match");
         validate = false;
     } else if ((($("#inputNewPass").val()) == ($("#inputConfirmPass").val())) && (($("#inputNewPass").val()) != "") && ($("#inputConfirmPass").val()) != "") {
@@ -60,9 +63,9 @@ $("#btnChange").click(function (event) {
         validate = false;
     }
 
-    console.log(validate);
-    console.log(obj_change.NewPassword);
-    console.log($("#inputOldPass").val());
+    //console.log(validate);
+    //console.log(obj_change.OldPassword);
+    //console.log($("#inputOldPass").val());
     
 
     if (validate == true) {
