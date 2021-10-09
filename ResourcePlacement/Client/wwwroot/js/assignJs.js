@@ -183,16 +183,23 @@
         $('#SelectJob').modal('hide');
     })
 
+
+    function addZero(i) {
+        if (i < 10) {
+            i = "0" + i;
+        }
+        return i;
+    }
     $("#assignment").click(function (event) {
         event.preventDefault();
         var d = new Date();
-        var today = `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}T${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`;
+        var today = `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}T${addZero(d.getHours())}:${addZero(d.getMinutes())}:${addZero(d.getSeconds())}`;
         var obj_assign = new Object();
         obj_assign.EmployeeId = $("#validationCustom03").val();
         obj_assign.JobId = $("#JobID").val();
         obj_assign.Status = parseInt('1');
         obj_assign.RecordDate = today;
-        obj_assign.InterviewDate = $("#InterviewDate").val();
+        obj_assign.InterviewDate = $("#InterviewDate").val()+'T'+$("#InterviewTime").val();
         obj_assign.InterviewTime = $("#InterviewTime").val().toString();
         obj_assign.Interviewer = $("#Interviewer").val();
         console.log(today);

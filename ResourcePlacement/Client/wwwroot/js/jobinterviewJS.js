@@ -18,6 +18,9 @@
                 }
             },
             {
+                "data": "idJob"
+            },
+            {
                 "data": "titleJob"
             },
             {
@@ -37,12 +40,17 @@
                 "autoWidth": true
             },
             {
-                "data": "interviewDate",
-
+                
+                "data": "interviewDate", render: function (toFormat) {
+                    var Date=toFormat.toString().substring(0,10);
+                    
+                    return Date;
+                },
+                "orderable": true,
                 "autoWidth": true
             },
             {
-                "data": "intervieweTime",
+                "data": "interviewTime",
 
                 "autoWidth": true
             },

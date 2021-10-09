@@ -151,11 +151,14 @@ namespace ResourcePlacement.Migrations
 
             modelBuilder.Entity("ResourcePlacement.Model.JobEmployee", b =>
                 {
-                    b.Property<string>("EmployeeId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("JobId")
-                        .HasColumnType("int");
+                    b.Property<string>("EmployeeId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("InterviewDate")
                         .HasColumnType("datetime2");
@@ -169,13 +172,18 @@ namespace ResourcePlacement.Migrations
                     b.Property<string>("Interviewer")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("JobId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("RecordDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.HasKey("EmployeeId", "JobId");
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId");
 
                     b.HasIndex("JobId");
 

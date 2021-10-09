@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ResourcePlacement.Migrations
 {
-    public partial class add_table : Migration
+    public partial class add_data : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -141,6 +141,8 @@ namespace ResourcePlacement.Migrations
                 name: "tb_tr_jobs_employees",
                 columns: table => new
                 {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     EmployeeId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     JobId = table.Column<int>(type: "int", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
@@ -152,7 +154,7 @@ namespace ResourcePlacement.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_tb_tr_jobs_employees", x => new { x.EmployeeId, x.JobId });
+                    table.PrimaryKey("PK_tb_tr_jobs_employees", x => x.Id);
                     table.ForeignKey(
                         name: "FK_tb_tr_jobs_employees_tb_m_employees_EmployeeId",
                         column: x => x.EmployeeId,
@@ -210,6 +212,11 @@ namespace ResourcePlacement.Migrations
                 name: "IX_tb_tr_job_histories_JobId",
                 table: "tb_tr_job_histories",
                 column: "JobId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_tb_tr_jobs_employees_EmployeeId",
+                table: "tb_tr_jobs_employees",
+                column: "EmployeeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_tb_tr_jobs_employees_JobId",

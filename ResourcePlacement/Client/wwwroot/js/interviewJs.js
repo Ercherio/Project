@@ -3,7 +3,7 @@
         "filter": true,
         
         "ajax": {
-            "url": "/JobEmployees",
+            "url": "/JobEmployees/GetJobEmployee",
             "datatype": "json",
             "dataSrc": ""
         },
@@ -17,49 +17,35 @@
                 }
             },
             {
-                "data": "jobId"
+                "data": "idJob"
             },
             {
-                "data": "jobId",
+                "data": "titleJob"
+            },
+            {
+                "data": "company",
             },
 
             {
-                "data": "employeeID",
+                "data": "idEmployee",
                 "autoWidth": true
             },
             {
-                "data": "emmployeeID",
+                "data": "fullName",
                 "autoWidth": true
-            },
-            {
-                "data": "status", render: function (toFormat) {
-                    var status;
-                    console.log(toFormat)
-                    if (toFormat === 1) {
-                        status = "Invited"
-                    } else if(toFormat==2){
-                        status="Interview"
-                    }
-                    else {
-                        status = "Job"
-                    }
-                    return status;
-                },
-                "orderable": false
             },
             {
                 "data": null,
                 "orderable": false,
                 "render": function (data, type, row) {
                     var button = `<button class="btn btn-success" id="select"
-                                    data-employeeId= ${row["id"]} data-email= ${row["email"]}
-                                    data-gender= ${row["gender"]}
-                                    data-status= ${row["employmentStatus"]}
-                                    data-phone= ${row["phoneNumber"]}
-                                    data-salary= ${row["salary"]}
-                                    data-first= ${ row["firstName"]}
-                                    data-last= ${row["lastName"]}
-                                    data-department= ${row["departmentId"]}>Select</button>`;
+                                    data-employee ="${row["idEmployee"]}" data-employeename= "${row["fullName"]}"
+                                    data-jobid= "${row["idJob"]}"
+                                    data-title= "${row["titleJob"]}"
+                                    data-company= "${row["company"]}"
+                                    data-date= "${ row["interviewDate"]}"
+                                    data-time= "${row["interviewTime"]}"
+                                    data-interviewer= "${row["interviewer"]}">Select</button>`;
                     return button
                 }
 
@@ -69,72 +55,59 @@
     });
     
     $(document).on('click', '#select', function (){
-        var employee_id = $(this).data('id');
-        var email = $(this).data('email');
-        var gender = $(this).data('gender');
-        var status = $(this).data('status');
-        var salary = $(this).data('salary');
-        var phoneNumber = $(this).data('phone');
-        var emp_firstName = $(this).data('first');
-        var emp_lastName = $(this).data('last');
-        var emp_departmentId = $(this).data('department');
-        
+        var employee_id = $(this).data('employee');
+        var employee_name = $(this).data('employeename');
+        var job_id = $(this).data('jobid');
+        var job_title = $(this).data('title');
+        var company = $(this).data('company');
+        var date = $(this).data('date').toString().substring(0, 10);
+        var time = $(this).data('time');
+        var interviewer = $(this).data('interviewer');
+ 
         $('#validationCustom03').val(employee_id);
-        $('#validationCustom04').val(email);
-        $('#inputGender').val(gender);
-        $('#inputFirstName').val(emp_firstName);
-        $('#lastName').val(emp_lastName);
-        $('#inputGender').val(gender);
-        $('#inputStatus').val(status);
-        $('#notelp').val(phoneNumber);
-        $('#department').val(emp_departmentId);
-        $('#validationgaji').val(salary);
+        $('#inputName').val(employee_name);
+        $('#JobID').val(job_id);
+        $('#title').val(job_title);
+        $('#company').val(company);
+        $('#InterviewDate').val(date);
+        $('#InterviewTime').val(time);
+        $('#InterviewTime').val(time);
+        $('#Interviewer').val(interviewer);
+       
        
         $('#selectEmployee').modal('hide');
 
 
     })
+    function addZero(i) {
+        if (i < 10) {
+            i = "0" + i;
+        }
+        return i;
+    }
 
-    $(document).on('click', '#selectJob', function () {
-        var job_id = $(this).data('id');
-        var title = $(this).data('title');
-        var companyId = $(this).data('company');
-        var description = $(this).data('description');
-
-        console.log(job_id);
-        console.log(title);
-        console.log(companyId);
-        console.log(description);
-        $('#company').val(companyId);
-        $('#description').val(description);
-        $('#title').val(title);
-        $('#JobID').val(job_id);
-        
-
-        $('#SelectJob').modal('hide');
-    })
-
-    $("#inverview").click(function (event) {
+    $("#interview").click(function (event) {
         event.preventDefault();
         var d = new Date();
-        var today = `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}T${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`;
-        var obj_assign = new Object();
+        var today = `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}T${addZero(d.getHours())}:${addZero(d.getMinutes())}:${addZero(d.getSeconds())}`;
+        var obj_interview = new Object();
         obj_interview.EmployeeId = $("#validationCustom03").val();
         obj_interview.JobId = $("#JobID").val();
-        obj_interview.Status = parseInt('1');
+        obj_interview.Status = parseInt('2');
         obj_interview.RecordDate = today;
-        obj_interview.InterviewDate = $("#InterviewDate").val();
+        obj_interview.InterviewDate = $("#InterviewDate").val()+'T'+$("#InterviewTime").val();
         obj_interview.InterviewTime = $("#InterviewTime").val().toString();
         obj_interview.Interviewer = $("#Interviewer").val();
-        console.log(today);
+        
+        console.log(JSON.stringify(today));
         console.log(JSON.stringify(obj_interview));
 
         $.ajax({
-            url: "/Assigns/assign",
+            url: "/Interviews/interview",
             method: 'POST',
             dataType: 'json',
             contentType: 'application/x-www-form-urlencoded',
-            data: obj_assign,
+            data: obj_interview,
             success: function (data) {
                 
                 Swal.fire({
