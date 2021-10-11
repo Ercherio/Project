@@ -88,9 +88,9 @@ namespace Client.Repository.Data
             return result;
         }
 
-        public string ResultAccept(JobEmployee jobEmployee)
+        public string ResultAccept(JobEmployeeVM jobEmployeevm)
         {
-            StringContent content = new StringContent(JsonConvert.SerializeObject(jobEmployee), Encoding.UTF8, "application/json");
+            StringContent content = new StringContent(JsonConvert.SerializeObject(jobEmployeevm), Encoding.UTF8, "application/json");
             var result = httpClient.PostAsync(request + "InsertJEFinalized", content).Result.Content.ReadAsStringAsync().Result;
             return result;
         }

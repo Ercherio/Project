@@ -103,6 +103,8 @@ $(document).ready(function () {
         var obj_interview = new Object();
         obj_interview.EmployeeId = $("#validationCustom03").val();
         obj_interview.JobId = $("#JobID").val();
+        obj_interview.IdEmployee = $("#validationCustom03").val();
+        obj_interview.IdJob = $("#JobID").val();
         obj_interview.Status = parseInt('3');
         obj_interview.RecordDate = today;
         obj_interview.InterviewDate = $("#InterviewDate").val()+'T'+$("#InterviewTime").val();
@@ -124,6 +126,7 @@ $(document).ready(function () {
         } else {
             document.getElementById("validationCustom03").className = "form-control is-valid";
             obj_interview.EmployeeId = $("#validationCustom03").val();
+            obj_interview.IdEmployee = $("#validationCustom03").val();
             validate = true;
         }
 
@@ -134,6 +137,7 @@ $(document).ready(function () {
         } else {
             document.getElementById("JobID").className = "form-control is-valid";
             obj_interview.JobId = $("#JobID").val();
+            obj_interview.IdJob = $("#JobID").val();
             validate = true;
         }
 
@@ -207,6 +211,8 @@ $(document).ready(function () {
         console.log(validate);
 
         if (validate == true && obj_interview.InterviewResult == 1) {
+            obj_interview.IdEmployee = $("#validationCustom03").val();
+            obj_interview.IdJob = $("#JobID").val();
             $.ajax({
                 url: "/JEFinalizeds/Accepted",
                 method: 'POST',

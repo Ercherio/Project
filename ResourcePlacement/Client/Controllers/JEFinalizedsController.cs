@@ -2,6 +2,7 @@
 using Client.Repository.Data;
 using Microsoft.AspNetCore.Mvc;
 using ResourcePlacement.Model;
+using ResourcePlacement.ViewModel;
 using System.Threading.Tasks;
 
 namespace Client.Controllers
@@ -25,9 +26,9 @@ namespace Client.Controllers
 
 
         [HttpPost("Accepted")]
-        public JsonResult Result(JobEmployee jobEmployee)
+        public JsonResult Result(JobEmployeeVM jobEmployeevm)
         {
-            var result = repository.ResultAccept(jobEmployee);
+            var result = repository.ResultAccept(jobEmployeevm);
             return Json(result);
         }
 
