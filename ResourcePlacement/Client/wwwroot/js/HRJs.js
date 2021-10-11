@@ -123,6 +123,7 @@
         obj_register.Gender = parseInt($('#inputGender').val());
         obj_register.EmploymentStatus = parseInt($('#inputStatus').val());
         obj_register.DepartmentId = parseInt($('#department').val());
+        obj_register.Password =obj_register.FirstName+"1234567";
        
         if ($("#validationgaji").val() == "") {
             document.getElementById("validationgaji").className = "form-control is-invalid";
@@ -172,7 +173,7 @@
         }
 
         $.ajax({
-            url: "/Employees/Add",
+            url: "/Employees/AddHR",
             method: 'POST',
             dataType: 'json',
             contentType: 'application/x-www-form-urlencoded',

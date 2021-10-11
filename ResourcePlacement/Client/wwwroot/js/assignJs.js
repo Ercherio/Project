@@ -252,7 +252,7 @@
             $("#msgUser").html("Interviewer can't be empty");
             validate = false;
         } else {
-            document.getElementById("#Interviewer").className = "form-control is-valid";
+            document.getElementById("Interviewer").className = "form-control is-valid";
             obj_assign.Interviewer = $("#Interviewer").val();
             validate = true;
         }

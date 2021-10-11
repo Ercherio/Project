@@ -235,7 +235,7 @@ $(document).ready(function () {
                 }
             })
         } else if (validate == true && obj_interview.InterviewResult == 0) {
-            obj_interview.Status = parseInt('2');
+           
             $.ajax({
                 url: "/JEFinalizeds/Decline",
                 method: 'POST',

@@ -3,6 +3,7 @@ using Client.Repository.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ResourcePlacement.Model;
+using ResourcePlacement.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,6 +54,13 @@ namespace Client.Controllers
         public JsonResult Register(Employee employee)
         {
             var result = repository.Register(employee);
+            return Json(result);
+        }
+
+        [HttpPost("AddHR")]
+        public JsonResult RegisterHR(HRVM hrvm)
+        {
+            var result = repository.RegisterHR(hrvm);
             return Json(result);
         }
 

@@ -41,7 +41,7 @@
                     } else if (toFormat === 2) {
                         status = "Interviewed"
                     } else {
-                        status="Job"
+                        status="Finalized"
                     }
                     return status;
                 },
