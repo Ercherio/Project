@@ -266,6 +266,18 @@
                 dataType: 'json',
                 contentType: 'application/x-www-form-urlencoded',
                 data: obj_assign,
+                beforeSend: function () {
+                    Swal.fire({
+                        title: 'Now loading',
+                        text: "Please wait",
+                        imageUrl: "https://c.tenor.com/5o2p0tH5LFQAAAAi/hug.gif",
+                        imageWidth: 200,
+                        imageHeight: 200,
+                        imageAlt: 'Custom image',
+                        showConfirmButton: false,
+                        allowOutsideClick: false
+                    })
+                },
                 success: function (data) {
 
                     Swal.fire({
