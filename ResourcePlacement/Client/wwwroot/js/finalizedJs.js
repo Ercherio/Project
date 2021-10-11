@@ -1,4 +1,5 @@
-﻿$(document).ready(function () {
+﻿
+$(document).ready(function () {
     $('#datajobemployee').DataTable({
         "filter": true,
         
@@ -86,6 +87,15 @@
         return i;
     }
 
+        
+        changeStatus();
+    $("#result").on("change", function () {
+        changeStatus();
+    })
+
+
+
+
     $("#interview").click(function (event) {
         event.preventDefault();
         var d = new Date();
@@ -99,7 +109,10 @@
         obj_interview.InterviewTime = $("#InterviewTime").val().toString();
         obj_interview.Interviewer = $("#Interviewer").val();
         obj_interview.InterviewResult = $("#result").val();
-        
+        obj_interview.StartDate = $("#startDate").val();
+        obj_interview.EndDate = $("#endDate").val();
+
+            
         console.log(JSON.stringify(today));
         console.log(JSON.stringify(obj_interview));
 
@@ -147,4 +160,15 @@ function company_name(id) {
 
     return name;
 }
+function changeStatus() {
+    var status = document.getElementById("result");
+    console.log(status.value);
+    if (status.value == "1") {
+        document.getElementById("jobDate").style.visibility = "visible";
+    } else {
+        document.getElementById("jobDate").style.visibility = "hidden";
+
+    }
+}
+
 
