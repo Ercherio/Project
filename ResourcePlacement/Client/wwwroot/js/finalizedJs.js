@@ -4,7 +4,7 @@ $(document).ready(function () {
         "filter": true,
         
         "ajax": {
-            "url": "/JobEmployees/GetJobEmployee",
+            "url": "/JobEmployees/interview",
             "datatype": "json",
             "dataSrc": ""
         },
@@ -103,7 +103,7 @@ $(document).ready(function () {
         var obj_interview = new Object();
         obj_interview.EmployeeId = $("#validationCustom03").val();
         obj_interview.JobId = $("#JobID").val();
-        obj_interview.Status = parseInt('2');
+        obj_interview.Status = parseInt('3');
         obj_interview.RecordDate = today;
         obj_interview.InterviewDate = $("#InterviewDate").val()+'T'+$("#InterviewTime").val();
         obj_interview.InterviewTime = $("#InterviewTime").val().toString();
@@ -132,7 +132,7 @@ $(document).ready(function () {
             $("#msgJobID").html("Job ID can't be empty");
             validate = false;
         } else {
-            document.getElementById("#JobID").className = "form-control is-valid";
+            document.getElementById("JobID").className = "form-control is-valid";
             obj_interview.JobId = $("#JobID").val();
             validate = true;
         }
@@ -142,7 +142,7 @@ $(document).ready(function () {
             $("#msgDate").html("Interview Date can't be empty");
             validate = false;
         } else {
-            document.getElementById("#InterviewDate").className = "form-control is-valid";
+            document.getElementById("InterviewDate").className = "form-control is-valid";
             obj_interview.InterviewDate = $("#InterviewDate").val();
             validate = true;
         }
@@ -152,7 +152,7 @@ $(document).ready(function () {
             $("#msgTime").html("Interview Time can't be empty");
             validate = false;
         } else {
-            document.getElementById("#InterviewTime").className = "form-control is-valid";
+            document.getElementById("InterviewTime").className = "form-control is-valid";
             obj_interview.InterviewTime = $("#InterviewTime").val();
             validate = true;
         }
@@ -162,7 +162,7 @@ $(document).ready(function () {
             $("#msgUser").html("Interviewer can't be empty");
             validate = false;
         } else {
-            document.getElementById("#Interviewer").className = "form-control is-valid";
+            document.getElementById("Interviewer").className = "form-control is-valid";
             obj_interview.Interviewer = $("#Interviewer").val();
             validate = true;
         }
@@ -182,7 +182,7 @@ $(document).ready(function () {
                     $("#msgStart").html("Start Date can't be empty");
                     validate = false;
                 } else {
-                    document.getElementById("#startDate").className = "form-control is-valid";
+                    document.getElementById("startDate").className = "form-control is-valid";
                     obj_interview.StartDate = $("#startDate").val();
                     validate = true;
                 }
@@ -191,7 +191,7 @@ $(document).ready(function () {
                     $("#msgEnd").html("End Date can't be empty");
                     validate = false;
                 } else {
-                    document.getElementById("#endDate").className = "form-control is-valid";
+                    document.getElementById("endDate").className = "form-control is-valid";
                     obj_interview.EndDate = $("#endDate").val();
                     validate = true;
                 }
@@ -206,9 +206,9 @@ $(document).ready(function () {
 
         console.log(validate);
 
-        if (validate == true) {
+        if (validate == true && obj_interview.InterviewResult == 1) {
             $.ajax({
-                url: "url to input data",
+                url: "/JEFinalizeds/Accepted",
                 method: 'POST',
                 dataType: 'json',
                 contentType: 'application/x-www-form-urlencoded',
@@ -228,6 +228,30 @@ $(document).ready(function () {
 
                 }
             })
+        } else if (validate == true && obj_interview.InterviewResult == 0) {
+            obj_interview.Status = parseInt('2');
+            $.ajax({
+                url: "/JEFinalizeds/Decline",
+                method: 'POST',
+                dataType: 'json',
+                contentType: 'application/x-www-form-urlencoded',
+                data: obj_interview,
+                success: function (data) {
+
+                    Swal.fire({
+                        title: 'Success Inserting Data!',
+                        text: 'Press Any Button to Continue',
+                        icon: 'success',
+                        confirmButtonText: 'Okay'
+                    })
+
+                },
+                error: function (xhr, status, error) {
+                    console.log(xhr.responseJSON.errors);
+
+                }
+            })
+
         } else {
             event.preventDefault();
             console.log(JSON.stringify(obj_interview));

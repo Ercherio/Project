@@ -16,10 +16,18 @@ namespace Client.Controllers
         }
 
 
-        [HttpGet("GetResult")]
-        public async Task<JsonResult> GetJobEmployee()
+        [HttpPost("Decline")]
+        public JsonResult Register(JobEmployee jobEmployee)
         {
-            var result = await repository.GetJobEmployee();
+            var result = repository.ResultDecline(jobEmployee);
+            return Json(result);
+        }
+
+
+        [HttpPost("Accepted")]
+        public JsonResult Result(JobEmployee jobEmployee)
+        {
+            var result = repository.ResultAccept(jobEmployee);
             return Json(result);
         }
 

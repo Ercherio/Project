@@ -3,7 +3,7 @@
         "filter": true,
         
         "ajax": {
-            "url": "/JobEmployees/GetJobEmployee",
+            "url": "/JobEmployees/Invited",
             "datatype": "json",
             "dataSrc": ""
         },
