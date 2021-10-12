@@ -74,6 +74,18 @@ namespace Client.Repository.Data
             return entities;
         }
 
+
+        public async Task<List<JobEmployeeVM>> GetEmployeeInterview(string id)
+        {
+            List<JobEmployeeVM> entities = new List<JobEmployeeVM>();
+            using (var response = await httpClient.GetAsync("Employees/" + "GetEmployeeInterviewHistories/" + id))
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                entities = JsonConvert.DeserializeObject<List<JobEmployeeVM>>(apiResponse);
+            }
+            return entities;
+        }
+
         public string Register(JobEmployee jobEmployee)
         {
             StringContent content = new StringContent(JsonConvert.SerializeObject(jobEmployee), Encoding.UTF8, "application/json");

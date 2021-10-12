@@ -23,6 +23,13 @@ namespace Client.Controllers
             return Json(result);
         }
 
+        [HttpGet("GetInterview/{id}")]
+        public async Task<JsonResult> GetInterview(string id)
+        {
+            var result = await repository.GetEmployeeInterview(id);
+            return Json(result);
+        }
+
 
         [HttpGet("Invited")]
         public async Task<JsonResult> Invited()

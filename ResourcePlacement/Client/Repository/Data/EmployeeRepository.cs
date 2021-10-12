@@ -42,6 +42,7 @@ namespace Client.Repository.Data
             return entities;
         }
 
+
         public async Task<List<Employee>> GetHR()
         {
             List<Employee> entities = new List<Employee>();
