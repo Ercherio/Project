@@ -124,7 +124,7 @@
         obj_assign.JobId = $("#inputJob").val();
         obj_assign.Status = parseInt('1');
         obj_assign.RecordDate = today;
-        obj_assign.InterviewDate = $("#InterviewDate").val() + 'T' + $("#InterviewTime").val();
+        obj_assign.InterviewDate = $("#InterviewDate").val();
         obj_assign.InterviewTime = $("#InterviewTime").val().toString();
         obj_assign.Interviewer = $("#Interviewer").val();
         console.log(today);
@@ -205,13 +205,13 @@
                     })
                 },
                 success: function (data) {
-
                     Swal.fire({
                         title: 'Success Inserting Data!',
                         text: 'Press Any Button to Continue',
                         icon: 'success',
                         confirmButtonText: 'Okay'
                     })
+                    $('#dataJobEmployee').DataTable().ajax.reload();
 
                 },
                 error: function (xhr, status, error) {
