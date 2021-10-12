@@ -65,9 +65,9 @@ namespace Client.Controllers
         }
 
         [HttpDelete("id")]
-        public JsonResult Delete(string id)
+        public JsonResult DeleteEmployee(string id)
         {
-            var result = repository.Delete(id);
+            var result = repository.DeleteEmployee(id);
             return Json(result);
         }
 

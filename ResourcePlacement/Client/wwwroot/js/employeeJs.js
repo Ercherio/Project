@@ -295,7 +295,7 @@ function del(ID) {
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({
-                url: "/Employees/" + ID,
+                url: "/Employees/DeleteEmployee" + ID,
                 method: 'DELETE'
             }).done((result) => {
                 console.log(result)

@@ -66,7 +66,7 @@ namespace Client.Repository.Data
             return employee;
         }
 
-        public HttpStatusCode Delete(string id)
+        public HttpStatusCode DeleteEmployee(string id)
         {
             var result = httpClient.DeleteAsync(request + id).Result;
             return result.StatusCode;
