@@ -64,6 +64,12 @@ namespace Client.Controllers
             return Json(result);
         }
 
+        [HttpDelete("id")]
+        public JsonResult Delete(string id)
+        {
+            var result = repository.Delete(id);
+            return Json(result);
+        }
 
 
         [HttpGet("Main")]

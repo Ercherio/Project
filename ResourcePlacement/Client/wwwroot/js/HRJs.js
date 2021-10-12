@@ -1,8 +1,6 @@
 ﻿$(document).ready(function () {
 
-    
-
-    var table=$('#dataemployee').DataTable({
+    var table=$('#datahr').DataTable({
        "filter": true,
         "dom": 'Bfrtip',
         "ajax": {
@@ -59,18 +57,10 @@
                         tPhone = '(' + '+62' + ')' + tPhone.substring(0, 3) + '-' + tPhone.substring(4, 8) + '-' + tPhone.substring(9, 13);
                         return tPhone
                     }
-                }
-            },
-
-           
-            {
-                "data": null,
-                "render": function (data, type, row) {
-                    var money = row["salary"]
-                    return "Rp " + moneyMaker(money);
                 },
-                "autoWidth": true
+                 "autoWidth": true
             },
+           
             {
                 "data": null,
                 "orderable": false,
