@@ -73,7 +73,7 @@
                 "orderable": false,
                 "render": function (data, type, row) {
                     const button = `<button id= "btn-detail" class="btn btn-primary" data-toogle="modal" data-target="#GetEmployee" onclick="detail('${row["id"]}')">Details</button>
-                    <a id="detail" class="btn btn-success" data-id ="${row["id"]}">Detail Assignment</a>`;
+                    <a id="detail" class="btn btn-success" data-id ="${row["id"]}">History</a>`;
                     
                     
                     return button;
@@ -120,8 +120,6 @@
     });
 
 
-
-
     $("#submitdata").click(function (event) {
         event.preventDefault();
         var obj_register = new Object();
@@ -133,80 +131,118 @@
         obj_register.Gender = parseInt($('#inputGender').val());
         obj_register.EmploymentStatus = parseInt($('#inputStatus').val());
         obj_register.DepartmentId = parseInt($('#department').val());
-       
-        if ($("#validationgaji").val() == "") {
+
+
+        var validate = false;
+        if ($("#validationgaji").val() == "" && validate==false) {
             document.getElementById("validationgaji").className = "form-control is-invalid";
             $("#msgSalary").html("Salary can't be empty");
+            validate = false;
         } else {
             document.getElementById("validationgaji").className = "form-control is-valid";
             obj_register.salary = $("#validationgaji").val();
+            validate = true;
         }
-        if ($("#validationCustom03").val() == "") {
+        if ($("#validationCustom03").val() == "" && validate==false) {
             document.getElementById("validationCustom03").className = "form-control is-invalid";
             $("#msgID").html("ID can't be empty");
+            validate = false;
         } else {
             document.getElementById("validationCustom03").className = "form-control is-valid";
             obj_register.ID = $("#validationCustom03").val();
+            validate = true;
         }
 
-        if ($("#firstName").val() == "") {
+        if ($("#firstName").val() == "" && validate==false) {
             document.getElementById("firstName").className = "form-control is-invalid";
             $("#msgFN").html("First Name can't be empty");
+            validate = false;
         } else {
             document.getElementById("firstName").className = "form-control is-valid";
             obj_register.FirstName = $("#firstName").val();
+            validate = true;
         }
 
-        if ($("#lastName").val() == "") {
+        if ($("#lastName").val() == "" && validate == false) {
             document.getElementById("lastName").className = "form-control is-invalid";
             $("#msgLN").html("Last Name can't be empty");
+            validate = false;
         } else {
             document.getElementById("lastName").className = "form-control is-valid";
             obj_register.LastName = $("#lastName").val();
+            validate = true;
         }
 
-        if ($("#validationCustom04").val() == "") {
+        if ($("#validationCustom04").val() == "" && validate == false) {
             document.getElementById("validationCustom04").className = "form-control is-invalid";
             $("#msgEmail").html("Your Email can't be empty");
+            validate = false;
         } else {
             document.getElementById("validationCustom04").className = "form-control is-valid";
-            obj_register.Email= $("#validationCustom04").val();
+            obj_register.Email = $("#validationCustom04").val();
+            validate = true;
         }
 
         if ($("#notelp").val() == "") {
             document.getElementById("notelp").className = "form-control is-invalid";
             $("#msgPhone").html("Phone Number can't be empty");
+            validate = false;
         } else {
             document.getElementById("notelp").className = "form-control is-valid";
-            obj_register.PhoneNumber= $("#notelp").val();
+            obj_register.PhoneNumber = $("#notelp").val();
+            validate = true;
         }
 
-        $.ajax({
-            url: "/Employees/Add",
-            method: 'POST',
-            dataType: 'json',
-            contentType: 'application/x-www-form-urlencoded',
-            data: obj_register,
-            success: function (data) {
-                $('#Register').modal('hide');
-                Swal.fire({
-                    title: 'Success Inserting Data!',
-                    text: 'Press Any Button to Continue',
-                    icon: 'success',
-                    confirmButtonText: 'Okay'
+        if (validate == true) {
+            $.ajax({
+                url: "/Employees/Add",
+                method: 'POST',
+                dataType: 'json',
+                contentType: 'application/x-www-form-urlencoded',
+                data: obj_register,
+                beforeSend: function () {
+                    Swal.fire({
+                        title: 'Now loading',
+                        text: "Please wait",
+                        imageUrl: "https://c.tenor.com/5o2p0tH5LFQAAAAi/hug.gif",
+                        imageWidth: 200,
+                        imageHeight: 200,
+                        imageAlt: 'Custom image',
+                        showConfirmButton: false,
+                        allowOutsideClick: false
                     })
-                table.ajax.reload();
-            },
-            error: function (xhr, status, error) {
-                console.log(xhr.responseJSON.errors);
-                if (xhr.responseJSON.errors != undefined) {
-                    checkValid(xhr.responseJSON.errors.NIK, "validationCustom03", "#msgID");
-                    checkValid(xhr.responseJSON.errors.Email, "validationCustom04", "#msgEmail");
-                    checkValid(xhr.responseJSON.errors.Phone, "notelp", "#msgPhone");
-                }
+                },
+                success: function (data) {
+                    $('#Register').modal('hide');
+                    Swal.fire({
+                        title: 'Success Inserting Data!',
+                        text: 'Press Any Button to Continue',
+                        icon: 'success',
+                        confirmButtonText: 'Okay'
+                    })
+                    table.ajax.reload();
+                },
+                error: function (xhr, status, error) {
+                    console.log(xhr.responseJSON.errors);
+                    if (xhr.responseJSON.errors != undefined) {
+                        checkValid(xhr.responseJSON.errors.NIK, "validationCustom03", "#msgID");
+                        checkValid(xhr.responseJSON.errors.Email, "validationCustom04", "#msgEmail");
+                        checkValid(xhr.responseJSON.errors.Phone, "notelp", "#msgPhone");
+                    }
 
-            }
-        })    
+                }
+            })
+        } else {
+            event.preventDefault();
+            console.log(JSON.stringify(obj_register));
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+            })
+            event.stopPropagation();
+        }
+         
     })
 
     $.ajax({

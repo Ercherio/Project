@@ -1,43 +1,46 @@
-﻿@{
-    Layout = "_LayoutAdmin";
-}
+﻿@{ Layout = "_LayoutAdmin"; }
 
-<div class="row">
-    <div class="col-md-6">
 
-        <h1 class="mt-4">Data Employee</h1>
-        <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item active">Employee List</li>
-        </ol>
-    </div>
 
-    <div class="col-md-5"></div>
-    <div class="col-md-1 d-flex align-items-center">
-        <div class="d-flex align-items-center">
-            <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Register">Register</button>
+<div id="page">
+    <div class="row">
+        <div class="col-md-6">
+
+            <h1 class="mt-4">Data Employee</h1>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item active">Employee List</li>
+            </ol>
+        </div>
+
+        <div class="col-md-5"></div>
+        <div class="col-md-1 d-flex align-items-center">
+            <div class="d-flex align-items-center">
+                <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Register">Register</button>
+            </div>
         </div>
     </div>
+
+
+    <table class="table" id="dataemployee">
+
+        <thead class="table table-bordered table-hover">
+            <tr>
+                <th scope="col">No.</th>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone Number</th>
+                <th scope="col">Action</th>
+
+            </tr>
+        </thead>
+
+        <tbody id="employee">
+        </tbody>
+    </table>
 </div>
 
-
-<table class="table" id="dataemployee">
-
-    <thead class="table table-bordered table-hover">
-        <tr>
-            <th scope="col">No.</th>
-            <th scope="col">ID</th>
-            <th scope="col">Name</th>
-            <th scope="col">Gender</th>
-            <th scope="col">Email</th>
-            <th scope="col">Phone Number</th>
-            <th scope="col">Action</th>
-
-        </tr>
-    </thead>
-
-    <tbody id="employee">
-    </tbody>
-</table>
 
 
 <div class="modal fade" id="GetEmployee" role="dialog" aria-labelledby="GetEmployeelabel" aria-hidden="true">
@@ -53,7 +56,7 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-4">
-                        
+
                         <ul>
 
                             <li class="list-group">NIK</li>
@@ -62,7 +65,7 @@
                             <li class="list-group">Email</li>
                             <li class="list-group">Phone</li>
                             <li class="list-group">Salary</li>
-                            
+
                         </ul>
                     </div>
                     <div class="col-8" id="detailemployee">
@@ -85,7 +88,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="Register">Register</h5>
-                 <button type="button" class="close btn btn-danger" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close btn btn-danger" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
