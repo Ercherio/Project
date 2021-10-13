@@ -1,10 +1,10 @@
 ﻿$(document).ready(function () {
 
    
-    var table = $('#dataemployee').removeAttr('width').DataTable({
+    var table = $('#dataemployee').DataTable({
        "filter": true,
         "dom": 'Bfrtip',
-        scrollY: "300px",
+ 
         scrollX: true,
         scrollCollapse: true,
         "ajax": {
@@ -73,9 +73,9 @@
                 "orderable": false,
                 "render": function (data, type, row) {
                     const button = `<button id= "btn-detail" class="btn btn-primary" data-toogle="modal" data-target="#GetEmployee" onclick="detail('${row["id"]}')">Details</button>
-                    <a id="detail" class="btn btn-success" asp-controller="Details" asp-action="detail-assign">Detail Assignment</a>`;
-                    localStorage.setItem("id", row["id"]);
-
+                    <a id="detail" class="btn btn-success" data-id ="${row["id"]}">Detail Assignment</a>`;
+                    
+                    
                     return button;
                 },
                 "width": "30%",
@@ -113,6 +113,10 @@
 
     $('#dataemployee tbody').on('click', 'a', function () {
         console.log("This is Job Interview");
+        var Id = $(this).data('id');
+        console.log(Id);
+        localStorage.setItem("id",Id);
+        window.location = '/details/detail-assign';
     });
 
 

@@ -101,7 +101,7 @@
     $.ajax({
         url: '/JobEmployees/interview/'
     }).done(res => {
-        let selectItem = '';
+        let selectItem = '<option></option>';
         console.log(res);
         $.each(res, (key, val) => {
             selectItem += `<option value="${val.id}">${val.fullName} - ${val.titleJob} - ${val.company}</option>`
@@ -128,6 +128,7 @@
     }).fail(res => console.log(res));
 
     $('#inputJEmployee').select2({
+        placeholder: "Select a record",
         dropdownParent: $('#Result')
     });
 
@@ -271,14 +272,27 @@
                 dataType: 'json',
                 contentType: 'application/x-www-form-urlencoded',
                 data: obj_interview,
+                beforeSend: function () {
+                    Swal.fire({
+                        title: 'Now loading',
+                        text: "Please wait",
+                        imageUrl: "https://c.tenor.com/5o2p0tH5LFQAAAAi/hug.gif",
+                        imageWidth: 200,
+                        imageHeight: 200,
+                        imageAlt: 'Custom image',
+                        showConfirmButton: false,
+                        allowOutsideClick: false
+                    })
+                },
                 success: function (data) {
-
+                    $('#dataJobInterview').DataTable().ajax.reload();
                     Swal.fire({
                         title: 'Success Inserting Data!',
                         text: 'Press Any Button to Continue',
                         icon: 'success',
                         confirmButtonText: 'Okay'
                     })
+                    $('#Result').modal('hide');
 
                 },
                 error: function (xhr, status, error) {
@@ -314,6 +328,7 @@
                         icon: 'success',
                         confirmButtonText: 'Okay'
                     })
+                    $('#Result').modal('hide');
 
                 },
                 error: function (xhr, status, error) {

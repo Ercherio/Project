@@ -51,9 +51,10 @@ namespace Client.Controllers
         [HttpGet("login-page")]
         public IActionResult Index()
         {
-            //ViewBag.username=null;
             return View();
         }
+
+       
 
         [Authorize]
         [HttpGet("Logout/")]

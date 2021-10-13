@@ -101,7 +101,7 @@
     $.ajax({
         url: '/JobEmployees/Invited/'
     }).done(res => {
-        let selectItem = '';
+        let selectItem = '<option></option>';
         console.log(res);
         $.each(res, (key, val) => {
             selectItem += `<option value="${val.id}">${val.fullName} - ${val.titleJob} - ${val.company}</option>`
@@ -126,6 +126,7 @@
     }).fail(res => console.log(res));
 
     $('#inputJEmployee').select2({
+        placeholder: "Select a record",
         dropdownParent: $('#Interview')
     });
 
@@ -237,6 +238,7 @@
                         icon: 'success',
                         confirmButtonText: 'Okay'
                     })
+                    $('#Interview').modal('hide');
                 },
                 error: function (xhr, status, error) {
                     console.log(xhr.responseJSON.errors);

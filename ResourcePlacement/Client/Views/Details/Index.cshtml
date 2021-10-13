@@ -1,25 +1,71 @@
 ﻿@{ Layout = "_LayoutAdmin"; }
 
-<div class="row" id="Interview" >
-    <table class="table" id="datainterview">
-        <thead class="thead-dark">
-            <tr>
-                <th scope="col">No.</th>
-                <th scope="col">ID</th>
-                <th scope="col">Name</th>
-                <th scope="col">Title Job</th>
-                <th scope="col">Company</th>
-                <th scope="col">InterView Date</th>
-                <th scope="col">Interview Time</th>
-                <th scope="col">Interviwer</th>
-                <th scope="col">Result</th>
-            </tr>
-        </thead>
+<div class="col-md-6">
 
-        <tbody id="jobinterview">
-      </tbody>
-    </table>
+    <h1 class="mt-4">Detail Assignment</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active">Table of employee's assigment data</li>
+    </ol>
 </div>
+
+
+<div class="container" style="border: 1px solid black">
+    <div class="row">
+        <h2 class="mt-4">Detail Interview History</h2>
+    </div>
+    <div class="row" id="Interview">
+
+
+
+        <table class="table table-bordered" id="datainterview">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Title Job</th>
+                    <th scope="col">Company</th>
+                    <th scope="col">InterView Date</th>
+                    <th scope="col">Interview Time</th>
+                    <th scope="col">Interviewer</th>
+                    <th scope="col">Result</th>
+                </tr>
+            </thead>
+
+            <tbody id="jobinterview">
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+<div class="container" style="border: 1px solid black">
+    <div class="row">
+        <h2 class="mt-4">Detail Job History</h2>
+    </div>
+    <div class="row" id="History">
+
+        <table class="table table-bordered" id="datahistory">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Title Job</th>
+                    <th scope="col">Company</th>
+                    <th scope="col">Start Date</th>
+                    <th scope="col">End Date</th>
+                </tr>
+            </thead>
+
+            <tbody id="jobhistory">
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
 
 
 @section Scripts {

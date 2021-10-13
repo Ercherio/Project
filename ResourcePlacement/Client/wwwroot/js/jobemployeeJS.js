@@ -81,7 +81,7 @@
     $.ajax({
         url: '/Employees/GetEmployee'
     }).done(res => {
-        let selectItem = '';
+        let selectItem = '<option></option>';
         console.log(res);
         $.each(res, (key, val) => {
             selectItem += `<option value="${val.id}">${val.id} - ${val.firstName} ${val.lastName}</option>`
@@ -90,6 +90,7 @@
     }).fail(res => console.log(res));
 
     $('#inputEmployee').select2({
+        placeholder: "Select an employee",
         dropdownParent: $('#Assign')
     });
     
@@ -97,7 +98,7 @@
     $.ajax({
         url: '/Jobs'
     }).done(res => {
-        let selectItem = '';
+        let selectItem = '<option></option>';
         console.log(res);
         $.each(res, (key, val) => {
             selectItem += `<option value="${val.id}">${val.title} - ${company_name(val.companyId)}</option>`
@@ -106,6 +107,7 @@
     }).fail(res => console.log(res));
    
     $('#inputJob').select2({
+        placeholder: "Select a job",
         dropdownParent: $('#Assign')
     });
     function addZero(i) {
@@ -131,25 +133,25 @@
         console.log(JSON.stringify(obj_assign));
         var validate = false;
 
-        if ($("#inputEmployee").val() == "" && validate == false) {
-            document.getElementById("inputEmployee").className = "form-control is-invalid";
-            $("#msgEmployee").html("Employee can't be empty");
-            validate = false;
-        } else {
-            document.getElementById("inputEmployee").className = "form-control is-valid";
-            obj_assign.EmployeeId = $("#inputEmployee").val();
-            validate = true;
-        }
+        //if ($("#inputEmployee").val() == "" && validate == false) {
+        //    document.getElementById("inputEmployee").className = "form-control is-invalid";
+        //    $("#msgEmployee").html("Employee can't be empty");
+        //    validate = false;
+        //} else {
+        //    document.getElementById("inputEmployee").className = "form-control is-valid";
+        //    obj_assign.EmployeeId = $("#inputEmployee").val();
+        //    validate = true;
+        //}
 
-        if ($("#inputJob").val() == "" && validate == false) {
-            document.getElementById("inputJob").className = "form-control is-invalid";
-            $("#msgJob").html("Job can't be empty");
-            validate = false;
-        } else {
-            document.getElementById("inputJob").className = "form-control is-valid";
-            obj_assign.JobId = $("#inputJob").val();
-            validate = true;
-        }
+        //if ($("#inputJob").val() == "" && validate == false) {
+        //    document.getElementById("inputJob").className = "form-control is-invalid";
+        //    $("#msgJob").html("Job can't be empty");
+        //    validate = false;
+        //} else {
+        //    document.getElementById("inputJob").className = "form-control is-valid";
+        //    obj_assign.JobId = $("#inputJob").val();
+        //    validate = true;
+        //}
 
         validate = false;
         if ($("#InterviewDate").val() == "" && validate == false) {

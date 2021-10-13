@@ -52,10 +52,32 @@ namespace Client.Repository.Data
             return entities;
         }
 
+        public async Task<List<JobEmployeeVM>> GetJobEmployeeInvitedFiltered()
+        {
+            List<JobEmployeeVM> entities = new List<JobEmployeeVM>();
+            using (var response = await httpClient.GetAsync(request + "GetJobEmployeeInvitedFiltered"))
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                entities = JsonConvert.DeserializeObject<List<JobEmployeeVM>>(apiResponse);
+            }
+            return entities;
+        }
+
         public async Task<List<JobEmployeeVM>> GetJobEmployeeInterview()
         {
             List<JobEmployeeVM> entities = new List<JobEmployeeVM>();
             using (var response = await httpClient.GetAsync(request + "GetJobEmployeeInterview"))
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                entities = JsonConvert.DeserializeObject<List<JobEmployeeVM>>(apiResponse);
+            }
+            return entities;
+        }
+
+        public async Task<List<JobEmployeeVM>> GetJobEmployeeInterviewFiltered()
+        {
+            List<JobEmployeeVM> entities = new List<JobEmployeeVM>();
+            using (var response = await httpClient.GetAsync(request + "GetJobEmployeeInterviewFiltered"))
             {
                 string apiResponse = await response.Content.ReadAsStringAsync();
                 entities = JsonConvert.DeserializeObject<List<JobEmployeeVM>>(apiResponse);
@@ -96,6 +118,17 @@ namespace Client.Repository.Data
             return entities;
         }
 
+        public async Task<List<JobHistoryVM>> GetJobHistory(string id)
+        {
+            List<JobHistoryVM> entities = new List<JobHistoryVM>();
+            using (var response = await httpClient.GetAsync("Employees/" + "GetEmployeeJobHistories/" + id))
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                entities = JsonConvert.DeserializeObject<List<JobHistoryVM>>(apiResponse);
+            }
+            return entities;
+        }
+
         public string Register(JobEmployee jobEmployee)
         {
             StringContent content = new StringContent(JsonConvert.SerializeObject(jobEmployee), Encoding.UTF8, "application/json");
@@ -106,7 +139,7 @@ namespace Client.Repository.Data
         public string ResultDecline(JobEmployee jobEmployee)
         {
             StringContent content = new StringContent(JsonConvert.SerializeObject(jobEmployee), Encoding.UTF8, "application/json");
-            var result = httpClient.PostAsync(request, content).Result.Content.ReadAsStringAsync().Result;
+            var result = httpClient.PostAsync(request+ "InsertJEFinalizedRejected", content).Result.Content.ReadAsStringAsync().Result;
             return result;
         }
 
