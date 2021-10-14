@@ -173,55 +173,68 @@
             validate = true;
         }
 
-        if (validate == true) {
-            $.ajax({
-                url: "/Employees/AddHR",
-                method: 'POST',
-                dataType: 'json',
-                contentType: 'application/x-www-form-urlencoded',
-                data: obj_register,
-                beforeSend: function () {
-                    Swal.fire({
-                        title: 'Now loading',
-                        text: "Please wait",
-                        imageUrl: "https://c.tenor.com/5o2p0tH5LFQAAAAi/hug.gif",
-                        imageWidth: 200,
-                        imageHeight: 200,
-                        imageAlt: 'Custom image',
-                        showConfirmButton: false,
-                        allowOutsideClick: false
-                    })
-                },
-                success: function (data) {
-                    $('#Register').modal('hide');
-                    Swal.fire({
-                        title: 'Success Inserting Data!',
-                        text: 'Press Any Button to Continue',
-                        icon: 'success',
-                        confirmButtonText: 'Okay'
-                    })
-                    table.ajax.reload();
-                },
-                error: function (xhr, status, error) {
-                    console.log(xhr.responseJSON.errors);
-                    if (xhr.responseJSON.errors != undefined) {
-                        checkValid(xhr.responseJSON.errors.NIK, "validationCustom03", "#msgID");
-                        checkValid(xhr.responseJSON.errors.Email, "validationCustom04", "#msgEmail");
-                        checkValid(xhr.responseJSON.errors.Phone, "notelp", "#msgPhone");
-                    }
+        Swal.fire({
+            title: "Are you sure that you want to submit this data?",
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Submit Data!',
+        }).then((result) => {
+            if (result.isConfirmed) {
 
+                if (validate == true) {
+                    $.ajax({
+                        url: "/Employees/AddHR",
+                        method: 'POST',
+                        dataType: 'json',
+                        contentType: 'application/x-www-form-urlencoded',
+                        data: obj_register,
+                        beforeSend: function () {
+                            Swal.fire({
+                                title: 'Now loading',
+                                text: "Please wait",
+                                imageUrl: "https://c.tenor.com/5o2p0tH5LFQAAAAi/hug.gif",
+                                imageWidth: 200,
+                                imageHeight: 200,
+                                imageAlt: 'Custom image',
+                                showConfirmButton: false,
+                                allowOutsideClick: false
+                            })
+                        },
+                        success: function (data) {
+                            $('#Register').modal('hide');
+                            Swal.fire({
+                                title: 'Success Inserting Data!',
+                                text: 'Press Any Button to Continue',
+                                icon: 'success',
+                                confirmButtonText: 'Okay'
+                            })
+                            table.ajax.reload();
+                        },
+                        error: function (xhr, status, error) {
+                            console.log(xhr.responseJSON.errors);
+                            if (xhr.responseJSON.errors != undefined) {
+                                checkValid(xhr.responseJSON.errors.NIK, "validationCustom03", "#msgID");
+                                checkValid(xhr.responseJSON.errors.Email, "validationCustom04", "#msgEmail");
+                                checkValid(xhr.responseJSON.errors.Phone, "notelp", "#msgPhone");
+                            }
+
+                        }
+                    })
+                } else {
+                    event.preventDefault();
+                    console.log(JSON.stringify(obj_register));
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'The form you submit is not correct',
+                        text: 'Please check your form and try submitting again!',
+                    })
+                    event.stopPropagation();
                 }
-            })
-        } else {
-            event.preventDefault();
-            console.log(JSON.stringify(obj_register));
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Something went wrong!',
-            })
-            event.stopPropagation();
-        }
+            }
+        })
     })
 
     $.ajax({

@@ -83,14 +83,14 @@
                     {
                         extend: 'excelHtml5',
                         exportOptions: {
-                            columns: [1, 2, 3, 4, 5]
+                            columns: [1, 2, 3, 4, 5,6,7,8]
                         }
                     },
                     'csv',
                     {
                         extend: 'pdfHtml5',
                         exportOptions: {
-                            columns: [1, 2, 3, 4, 5]
+                            columns: [1, 2, 3, 4, 5,6,7,8]
                         }
                     },
                     'print'
@@ -172,14 +172,14 @@
                     {
                         extend: 'excelHtml5',
                         exportOptions: {
-                            columns: [1, 2, 3, 4, 5]
+                            columns: [1, 2, 3, 4, 5,6]
                         }
                     },
                     'csv',
                     {
                         extend: 'pdfHtml5',
                         exportOptions: {
-                            columns: [1, 2, 3, 4, 5]
+                            columns: [1, 2, 3, 4, 5,6]
                         }
                     },
                     'print'

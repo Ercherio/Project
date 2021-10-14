@@ -12,8 +12,4 @@
     <ProjectReference Include="..\ResourcePlacement\ResourcePlacement.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\Companies\" />
-  </ItemGroup>
-
 </Project>
