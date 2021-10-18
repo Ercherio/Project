@@ -1,60 +1,113 @@
 ﻿@{ Layout = "_LayoutAdmin"; }
 
-<div class="container col-12-mt-8">
-<div class="card">
-    <div class="card-header">
-        <div class="row">
-            <p class="h1 col-12">Charts</p>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-6">
-        <div class="card card-primary">
-            <div class="card-header">
-                <h3 class="card-title">Interview Result</h3>
-            </div>
-            <div class="card-body">
-                <div id="chartinterview">
+<style>
+    #page {
+        border: 3px solid grey;
+        border-radius: 25px;
+        background-color: white;
+        margin-left: 15px;
+        margin-right: 15px;
+        width: auto;
+        height: auto;
+    }
 
-                </div>
-            </div>
-            <!-- /.card-body -->
-        </div>
-    </div>
-    <div class="col-6">
-        <div class="card card-primary">
-            <div class="card-header">
-                <h3 class="card-title">Gender</h3>
-            </div>
-            <div class="card-body">
-                <div id="chart">
+    #dashJobs {
+        background-color: dodgerblue;
+    }
+    #viewJob {
+        color:aliceblue;
+    }
 
-                </div>
-            </div>
-            <!-- /.card-body -->
-        </div>
-    </div>
-
-
-
-</div>
-<div class="row">
-    <div class="col-6">
-        <div class="card card-primary">
-            <div class="card-header">
-                <h3 class="card-title">Company Job</h3>
-            </div>
-            <div class="card-body">
-                <div id="chartcompany">
-
-                </div>
-            </div>
-            <!-- /.card-body -->
-        </div>
-    </div>
     
-</div>
+
+</style>
+
+<div class="container col-12-mt-8">
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <p class="h1 col-12">Dashboard</p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-4">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Assigment</h3>
+                </div>
+                <div class="card-body">
+                    <div id="assignment">
+
+                    </div>
+                </div>
+                <!-- /.card-body -->
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Interview</h3>
+                </div>
+                <div class="card-body">
+                    <div id="interview">
+
+                    </div>
+                </div>
+                <!-- /.card-body -->
+            </div>
+        </div>
+
+
+        <div class="col-4">
+            <div class="card card-primary" id="dashJobs">
+                <div class="card-header">
+                    <h3 class="card-title">Jobs</h3>
+                </div>
+                <div class="card-body">
+                    <div id="Jobs">
+                        <p></p>
+                    </div>
+                    <a id="viewJob" asp-controller="jobs" asp-action="Main">View Job</a>
+                </div>
+                <!-- /.card-body -->
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-6">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Interview Result</h3>
+                </div>
+                <div class="card-body">
+                    <div id="chartinterview">
+
+                    </div>
+                </div>
+                <!-- /.card-body -->
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Gender</h3>
+                </div>
+                <div class="card-body">
+                    <div id="chart">
+
+                    </div>
+                </div>
+                <!-- /.card-body -->
+            </div>
+        </div>
+    </div>
+
 </div>
 
 @section Scripts {

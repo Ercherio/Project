@@ -30,7 +30,7 @@ namespace ResourcePlacement.Repository.Data
                 Email = hrvm.Email,
                 Gender = hrvm.Gender,
                 EmploymentStatus = hrvm.EmploymentStatus,
-                DepartmentId = 1
+                DepartmentId = hrvm.DepartmentId
             };
             myContext.Employees.Add(employee);
 

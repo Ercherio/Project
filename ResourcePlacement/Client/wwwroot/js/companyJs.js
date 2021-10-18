@@ -31,7 +31,7 @@
                 "data": null,
                 "orderable": false,
                 "render": function (data, type, row) {
-                    var button = `<button id= "btn-delete" class="btn btn-danger" onclick="del('${row["id"]}')">Delete</button>`;
+                    var button = `<center><button id= "btn-delete" class="btn btn-danger" onclick="del('${row["id"]}')">Delete</button></center>`;
                     return button
                 }
             }

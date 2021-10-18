@@ -91,91 +91,15 @@
     });
 
 
-
-
     $.ajax({
-        url: '/Jobs',
+        url: '/Jobs/',
 
     }).done((result) => {
-
-        var BNI = result.filter(data => data.companyId === 1).length;
-        var BCA = result.filter(data => data.companyId === 2).length;
-        var PLN = result.filter(data => data.companyId === 3).length;
-        var Pertamina = result.filter(data => data.companyId === 4).length;
-
-        var companies = {
-            series: [{
-                data: [BNI,BCA,PLN,Pertamina]
-            }],
-            chart: {
-                height: 350,
-                type: 'bar',
-            },
-            plotOptions: {
-                bar: {
-                    borderRadius: 10,
-                    dataLabels: {
-                        position: 'center', // top, center, bottom
-                    },
-                }
-            },
-            dataLabels: {
-                enabled: true,
-                formatter: function (val) {
-                    return val;
-                },
-                offsetY: -20,
-                style: {
-                    fontSize: '12px',
-                    colors: ["#304758"]
-                }
-            },
-            xaxis: {
-                categories: ["BNI", "BCA", "PLN", "Pertamina"],
-                position: 'top',
-                axisBorder: {
-                    show: false
-                },
-                axisTicks: {
-                    show: false
-                },
-                crosshairs: {
-                    fill: {
-                        type: 'gradient',
-                        gradient: {
-                            colorFrom: '#D8E3F0',
-                            colorTo: '#BED1E6',
-                            stops: [0, 100],
-                            opacityFrom: 0.4,
-                            opacityTo: 0.5,
-                        }
-                    }
-                },
-                tooltip: {
-                    enabled: true,
-                }
-            },
-            yaxis: {
-                axisBorder: {
-                    show: false
-                },
-                axisTicks: {
-                    show: false,
-                },
-                labels: {
-                    show: false,
-                    formatter: function (val) {
-                        return val;
-                    }
-                }
-            }
-        };
-        var charcompany= new ApexCharts(document.querySelector("#chartcompany"), companies);
-        charcompany.render();
-        
-        
-        //var chart = new ApexCharts(document.querySelector("#chart"), options);
-        //chart.render();
+        console.log(result);
+        var text = "";
+        var count = result.length;
+        text = `<p>Count: ${count}</p>`;
+        $('#Jobs').html(text);
     }).fail((error) => {
         Swal.fire({
             title: 'Error!',
@@ -184,4 +108,5 @@
             confirmButtonText: 'Next'
         })
     });
+   
 })

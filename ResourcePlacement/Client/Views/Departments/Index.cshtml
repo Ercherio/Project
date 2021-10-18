@@ -1,42 +1,63 @@
 ﻿@{ Layout = "_LayoutAdmin"; }
+<style>
+    #page {
+        border: 3px solid grey;
+        border-radius: 25px;
+        background-color: white;
+        margin-left: 15px;
+        margin-right: 15px;
+        width: auto;
+        height: auto;
+    }
+
+    #datadepartment {
+        background-color: lightskyblue;
+    }
+</style>
 
 
+<div class="row">
+    <div class="col-md-6">
 
-<div id="page">
-    <div class="row">
-        <div class="col-md-6">
-
-            <h1 class="mt-4">Data Department</h1>
-            <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">Department List</li>
-            </ol>
-        </div>
-
-        <div class="col-md-5"></div>
-        <div class="col-md-1 d-flex align-items-center">
-            <div class="d-flex align-items-center">
-                <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Add">Add</button>
-            </div>
-        </div>
+        <h1 class="mt-4">Data Department</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">Department List</li>
+        </ol>
     </div>
 
+    <div class="col-md-5"></div>
+    <div class="col-md-1 d-flex align-items-center">
+        <div class="d-flex align-items-center">
+            <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Add">Add</button>
+        </div>
+    </div>
+</div>
 
-    <table class="table" id="datadepartment">
+<div class="container-fluid" id="page">
+    
+    <br/>
+    <div class="row">
+
+        <table class="table table-bordered" id="datadepartment">
 
         <thead class="table table-bordered table-hover">
             <tr>
                 <th scope="col">No.</th>
-                <th scope="col">ID</th>
-                <th scope="col">Name</th>
-                <th scope="col">Action</th>
+                <th scope="col"><center>ID</center></th>
+                <th scope="col"><center>Name</center></th>
+                <th scope="col"><center>Action</center></th>
             </tr>
         </thead>
 
         <tbody id="department">
         </tbody>
     </table>
+    </div>
 
-    <div class="modal fade" id="Add" tabindex="-1" role="dialog" aria-labelledby="add" aria-hidden="true">
+    <br/>
+</div>
+
+<div class="modal fade" id="Add" tabindex="-1" role="dialog" aria-labelledby="add" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -63,9 +84,7 @@
                 </div>
             </div>
         </div>
-    </div>
-
-</div>
+ </div>
 
 
 @section Scripts {

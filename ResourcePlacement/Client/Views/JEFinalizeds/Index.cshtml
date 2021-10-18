@@ -40,22 +40,22 @@
     </div>
 </div>
 
-<div class="container" id="page">
+<div class="container-fluid" id="page">
     <br/>
     <div class="row">
         <table class="table table-bordered" id="dataJobInterview">
 
             <thead class="thead-dark">
                 <tr>
-                    <th scope="col">No.</th>
-                    <th scope="col">ID Job</th>
-                    <th scope="col">Title Job</th>
-                    <th scope="col">Company</th>
-                    <th scope="col">ID Employee</th>
-                    <th scope="col">Employee Name</th>
-                    <th scope="col">Interviewer</th>
-                    <th scope="col">Interview Date</th>
-                    <th scope="col">Interview Time</th>
+                    <th scope="col"><center>No.</center></th>
+                    <th scope="col"><center>ID Job</center></th>
+                    <th scope="col"><center>Title Job</center></th>
+                    <th scope="col"><center>Company</center></th>
+                    <th scope="col"><center>ID Employee</center></th>
+                    <th scope="col"><center>Employee Name</center></th>
+                    <th scope="col"><center>Interviewer</center></th>
+                    <th scope="col"><center>Interview Date</center></th>
+                    <th scope="col"><center>Interview Time</center></th>
                     <th scope="col">Status</th>
                 </tr>
             </thead>
@@ -96,33 +96,25 @@
                             </div>
 
 
-                            <div class="col-4-md-2 mb-3">
-
+                            @*<div class="col-4-md-2 mb-3">
                                 <label for="EmployeeID">ID Employee</label>
-                                <div>
-                                    <input type="text" id="EmployeeId" class="form-control" required readonly>
+                                <div>*@
+                                    <input type="text" id="EmployeeId" class="form-control" required hidden>
                                     <div class="invalid-feedback">
                                         <span id="msgEmployee"></span>
                                     </div>
-                                </div>
-                                <div class="invalid-feedback">
-                                    <span id="msgJob"></span>
-                                </div>
-                            </div>
+                                @*</div>
+                            </div>*@
 
-                            <div class="col-4-md-2 mb-3">
-
+                            @*<div class="col-4-md-2 mb-3">
                                 <label for="JobId">ID Job</label>
-                                <div>
-                                    <input type="text" id="JobId" class="form-control" required readonly>
+                                <div>*@
+                                    <input type="text" id="JobId" class="form-control" required hidden>
                                     <div class="invalid-feedback">
                                         <span id="msgJob"></span>
                                     </div>
-                                </div>
-                                <div class="invalid-feedback">
-                                    <span id="msgJob"></span>
-                                </div>
-                            </div>
+                                @*</div>
+                            </div>*@
 
                         </div>
                     </div>

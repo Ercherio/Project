@@ -1,35 +1,51 @@
 ﻿@{ Layout = "_LayoutAdmin"; }
 
+<style>
+    #page {
+        border: 3px solid grey;
+        border-radius: 25px;
+        background-color: white;
+        margin-left: 15px;
+        margin-right: 15px;
+        width: auto;
+        height: auto;
+    }
 
+    #datacompany {
+        background-color: lightskyblue;
+    }
+</style>
 
-<div id="page">
-    <div class="row">
-        <div class="col-md-6">
+<div class="row">
+    <div class="col-md-6">
 
-            <h1 class="mt-4">Data Companies</h1>
-            <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">Company List</li>
-            </ol>
-        </div>
-
-        <div class="col-md-5"></div>
-        <div class="col-md-1 d-flex align-items-center">
-            <div class="d-flex align-items-center">
-                <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Add">Add</button>
-            </div>
-        </div>
+        <h1 class="mt-4">Data Companies</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">Company List</li>
+        </ol>
     </div>
 
+    <div class="col-md-5"></div>
+    <div class="col-md-1 d-flex align-items-center">
+        <div class="d-flex align-items-center">
+            <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Add">Add</button>
+        </div>
+    </div>
+</div>
 
-    <table class="table" id="datacompany">
+<div class="container-fluid" id="page">
+
+
+
+    <table class="table table-bordered" id="datacompany">
 
         <thead class="table table-bordered table-hover">
             <tr>
-                <th scope="col">No.</th>
-                <th scope="col">ID</th>
-                <th scope="col">Name</th>
-                <th scope="col">Address</th>
-                <th scope="col">Action</th>
+                <th scope="col"><center>No.</center></th>
+                <th scope="col"><center>ID</center></th>
+                <th scope="col"><center>Name</center></th>
+                <th scope="col"><center>Address</center></th>
+                <th scope="col"><center>Action</center></th>
             </tr>
         </thead>
 
@@ -37,42 +53,44 @@
         </tbody>
     </table>
 
-    <div class="modal fade" id="Add" tabindex="-1" role="dialog" aria-labelledby="add" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="Add">Add</h5>
-                    <button type="button" class="close btn btn-danger" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form id="formcompany" class="need-validations">
-                    <div class="modal-body">
 
-                        <div class="form-row">
-                            <label for="companyinput">Company Name</label>
-                            <input type="text" class="form-control" id="companyinput" placeholder="Company's name" required>
-                            <div class="invalid-feedback">
-                                <span id="msgComp"></span>
-                            </div>
-                        </div>
 
-                        <div class="form-row">
-                            <label for="department">Address</label>
-                            <input type="text" class="form-control" id="companyaddress" placeholder="Company's Address" required>
-                            <div class="invalid-feedback">
-                                <span id="msgAddress"></span>
-                            </div>
+</div>
+
+<div class="modal fade" id="Add" tabindex="-1" role="dialog" aria-labelledby="add" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="Add">Add</h5>
+                <button type="button" class="close btn btn-danger" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="formcompany" class="need-validations">
+                <div class="modal-body">
+
+                    <div class="form-row">
+                        <label for="companyinput">Company Name</label>
+                        <input type="text" class="form-control" id="companyinput" placeholder="Company's name" required>
+                        <div class="invalid-feedback">
+                            <span id="msgComp"></span>
                         </div>
                     </div>
-                </form>
-                <div class="modal-footer">
-                    <button id="submitdata" class="btn btn-primary" type="submit">Submit</button>
+
+                    <div class="form-row">
+                        <label for="department">Address</label>
+                        <input type="text" class="form-control" id="companyaddress" placeholder="Company's Address" required>
+                        <div class="invalid-feedback">
+                            <span id="msgAddress"></span>
+                        </div>
+                    </div>
                 </div>
+            </form>
+            <div class="modal-footer">
+                <button id="submitdata" class="btn btn-primary" type="submit">Submit</button>
             </div>
         </div>
     </div>
-
 </div>
 
 
