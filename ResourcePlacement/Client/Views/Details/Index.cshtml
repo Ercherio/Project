@@ -1,5 +1,23 @@
 ﻿@{ Layout = "_LayoutAdmin"; }
 
+<style>
+    #tablebackground {
+        border: 3px solid grey;
+        border-radius: 25px;
+        background-color: white;
+        width: auto;
+        height: auto;
+    }
+
+    #datainterview {
+        background-color: grey;
+    }
+    
+    #datahistory{
+        background-color: grey;
+    }
+</style>
+
 <div class="col-md-6">
 
     <h1 class="mt-4">Detail Assignment</h1>
@@ -9,7 +27,7 @@
 </div>
 
 
-<div class="container" style="border: 1px solid black">
+<div class="container" id="tablebackground">
     <div class="row">
         <h2 class="mt-4">Detail Interview History</h2>
     </div>
@@ -36,11 +54,13 @@
             </tbody>
         </table>
     </div>
-
+    <br/>
 </div>
 
-
-<div class="container" style="border: 1px solid black">
+<br />
+<br />
+<br />
+<div class="container" id="tablebackground">
     <div class="row">
         <h2 class="mt-4">Detail Job History</h2>
     </div>
@@ -63,7 +83,7 @@
             </tbody>
         </table>
     </div>
-
+    <br/>
 </div>
 
 

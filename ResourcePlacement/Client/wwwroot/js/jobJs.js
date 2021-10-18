@@ -37,7 +37,7 @@ $(document).ready(function () {
                 "data": null,
                 "orderable": false,
                 "render": function (data, type, row) {
-                    var button = `<button id= "btn-detail" class="btn btn-primary" data-toogle="modal" data-target="#GetJob" onclick="detail('${row["id"]}')">Details</button>`;
+                    var button = `<center><button id= "btn-detail" class="btn btn-primary" data-toogle="modal" data-target="#GetJob" onclick="detail('${row["id"]}')">Details</button></center>`;
                     return button
                 }
             }

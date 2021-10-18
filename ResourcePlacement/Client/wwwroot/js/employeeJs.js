@@ -3,8 +3,6 @@
     var table = $('#dataemployee').DataTable({
        "filter": true,
         "dom": 'Bfrtip',
-        scrollX: true,
-        scrollCollapse: true,
         "ajax": {
             "url": "/Employees/GetEmployee",
             "datatype": "json",
@@ -70,13 +68,13 @@
                 "data": null,
                 "orderable": false,
                 "render": function (data, type, row) {
-                    const button = `<button id= "btn-detail" class="btn btn-primary" data-toogle="modal" data-target="#GetEmployee" onclick="detail('${row["id"]}')">Details</button>
-                    <a id="detail" class="btn btn-success" data-id ="${row["id"]}">History</a>`;
+                    const button = `<center> <button id= "btn-detail" class="btn btn-primary" data-toogle="modal" data-target="#GetEmployee" onclick="detail('${row["id"]}')">Details</button>
+                    <a id="detail" class="btn btn-success" data-id ="${row["id"]}">History</a> </center>`;
                     
                     
                     return button;
                 },
-                "width": "30%",
+                "width": "20%",
                 
                    
             }

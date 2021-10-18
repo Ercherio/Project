@@ -1,37 +1,53 @@
 ﻿@{ Layout = "_LayoutAdmin"; }
+<style>
+    #page {
+        border: 3px solid grey;
+        border-radius: 25px;
+        background-color: white;
+        margin-left: 15px;
+        margin-right: 15px;
+        width: auto;
+        height: auto;
+    }
 
+    #dataemployee {
+      
+        background-color: grey;
+    }
+</style>
 
+<div class="row">
+<div class="col-md-6">
 
-<div id="page">
-    <div class="row">
-        <div class="col-md-6">
+    <h1 class="mt-4">Data Employee</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active">Employee List</li>
+    </ol>
+</div>
 
-            <h1 class="mt-4">Data Employee</h1>
-            <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">Employee List</li>
-            </ol>
-        </div>
-
-        <div class="col-md-5"></div>
-        <div class="col-md-1 d-flex align-items-center">
-            <div class="d-flex align-items-center">
-                <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Register">Register</button>
-            </div>
-        </div>
+<div class="col-md-5"></div>
+<div class="col-md-1 d-flex align-items-center">
+    <div class="d-flex align-items-center">
+        <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Register">Register</button>
+    </div>
+</div>
     </div>
 
+<div class ="container" id="page">
+    <br/>
+    <div class="row">
+    <table class="table table-bordered" id="dataemployee">
 
-    <table class="table" id="dataemployee">
-
-        <thead class="table table-bordered table-hover">
+        <thead class="table table-bordered">
             <tr>
+
                 <th scope="col">No.</th>
                 <th scope="col">ID</th>
                 <th scope="col">Name</th>
                 <th scope="col">Gender</th>
                 <th scope="col">Email</th>
                 <th scope="col">Phone Number</th>
-                <th scope="col">Action</th>
+                <th scope="col"><center>Action</center></th>
 
             </tr>
         </thead>
@@ -39,6 +55,8 @@
         <tbody id="employee">
         </tbody>
     </table>
+     </div>
+    <br/>
 </div>
 
 
@@ -92,7 +110,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-             <div class="modal-body">
+            <div class="modal-body">
                 <form id="formregister" class="need-validations">
                     <div class="form-row">
                         <div class="col">
