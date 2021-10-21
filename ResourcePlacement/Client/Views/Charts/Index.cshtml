@@ -1,70 +1,89 @@
 ﻿@{ Layout = "_LayoutAdmin"; }
 
 <style>
-    #page {
-        border: 3px solid grey;
-        border-radius: 25px;
-        background-color: white;
-        margin-left: 15px;
-        margin-right: 15px;
-        width: auto;
-        height: auto;
-    }
 
     #dashJobs {
-        background-color: dodgerblue;
+        background-color: palevioletred;
     }
+
     #viewJob {
-        color:aliceblue;
+        color: dodgerblue;
     }
 
-    
+    #Jobs {
+        color: black;
+        font-size: x-large;
+    }
 
+    #dashAssign {
+        background-color: lightgreen;
+    }
+
+    #viewAssign {
+        color: dodgerblue;
+    }
+
+    #assignment {
+        color: black;
+        font-size: x-large;
+    }
+
+    #dashInterview {
+        background-color: cornflowerblue;
+    }
+
+    #interview {
+        color: black;
+        font-size: x-large;
+    }
 </style>
 
-<div class="container col-12-mt-8">
-    <div class="card">
-        <div class="card-header">
-            <div class="row">
-                <p class="h1 col-12">Dashboard</p>
-            </div>
-        </div>
-    </div>
 
+<div class="col-md-6">
+
+    <h1 class="mt-4">Dashboard</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active">Dashboard View</li>
+    </ol>
+</div>
+
+<div class="container col-12-mt-8">
 
     <div class="row">
         <div class="col-4">
             <div class="card card-primary">
-                <div class="card-header">
+                <div class="card-header" id="dashAssign">
                     <h3 class="card-title">Assigment</h3>
                 </div>
                 <div class="card-body">
                     <div id="assignment">
-
+                        <p></p>
                     </div>
+                    <a id="viewAssign" asp-controller="JobEmployees" asp-action="Main">View Assignment</a>
                 </div>
-                <!-- /.card-body -->
+
             </div>
         </div>
+
         <div class="col-4">
             <div class="card card-primary">
-                <div class="card-header">
+                <div class="card-header" id="dashInterview">
                     <h3 class="card-title">Interview</h3>
                 </div>
                 <div class="card-body">
                     <div id="interview">
-
+                        <p></p>
                     </div>
+                    <a id="viewInterview" asp-controller="JEInterviews" asp-action="Main">View Interview</a>
                 </div>
-                <!-- /.card-body -->
             </div>
         </div>
 
 
         <div class="col-4">
-            <div class="card card-primary" id="dashJobs">
-                <div class="card-header">
-                    <h3 class="card-title">Jobs</h3>
+            <div class="card card-primary">
+                <div class="card-header" id="dashJobs">
+                    <h3 class="card-title">Job</h3>
                 </div>
                 <div class="card-body">
                     <div id="Jobs">
@@ -72,12 +91,12 @@
                     </div>
                     <a id="viewJob" asp-controller="jobs" asp-action="Main">View Job</a>
                 </div>
-                <!-- /.card-body -->
+                
             </div>
         </div>
+        
     </div>
-
-
+    <br />
 
     <div class="row">
         <div class="col-6">
@@ -90,6 +109,7 @@
 
                     </div>
                 </div>
+           
                 <!-- /.card-body -->
             </div>
         </div>
@@ -105,6 +125,7 @@
                 </div>
                 <!-- /.card-body -->
             </div>
+            
         </div>
     </div>
 

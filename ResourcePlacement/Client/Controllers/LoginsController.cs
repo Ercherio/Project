@@ -44,7 +44,7 @@ namespace Client.Controllers
 
             HttpContext.Session.SetString("User", user);
 
-            return RedirectToAction("Main", "Employees");
+            return RedirectToAction("index", "Charts");
         }
 
         [AllowAnonymous]
